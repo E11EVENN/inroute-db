@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     31/03/2024 5:11:50 p. m.                     */
+/* Created on:     31/03/2024 5:18:44 p. m.                     */
 /*==============================================================*/
 
 
@@ -680,7 +680,7 @@ CREATE TABLE TIPO_CUPON (
 /*==============================================================*/
 CREATE TABLE TIPO_DOCUMENTO (
    ID                   VARCHAR(2)           NOT NULL,
-   NOMBRE               VARCHAR(25)          NOT NULL,
+   NOMBRE               VARCHAR(50)          NOT NULL,
    CONSTRAINT PK_TIPO_DOCUMENTO PRIMARY KEY (ID)
 );
 
