@@ -1,1 +1,5 @@
-docker run --name inroute-db -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+CONTAINER_NAME=inroute-db
+EXTERNAL_PORT=5432
+POSTGRES_PASSWORD=postgres
+
+docker run --name $CONTAINER_NAME -p $EXTERNAL_PORT:5432 -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -d postgres
