@@ -24,7 +24,8 @@
 					"read-keys-with-columns": "false",
 					"@dbeaver-use-prepared-statements-db@": "false",
 					"postgresql.dd.plain.string": "false",
-					"postgresql.dd.tag.string": "false"
+					"postgresql.dd.tag.string": "false",
+					"@dbeaver-chosen-role@": ""
 				},
 				"auth-model": "native"
 			}
@@ -43,7 +44,7 @@
 			"auto-close-transactions": true,
 			"close-transactions-period": 1800,
 			"auto-close-connections": true,
-			"close-connections-period": 3600
+			"close-connections-period": 14400
 		}
 	}
 }
