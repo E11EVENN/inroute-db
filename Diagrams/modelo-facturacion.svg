@@ -12,10 +12,10 @@
    <text x="2037" y="77" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_RESOL_REF_RESOLUCION</text>
    <polyline fill="none" points="1374,459 1374,386" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1374,386 1377,400 1371,400" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1373" y="426" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FAC_DET_REF_FACTURA</text>
+   <text x="1373" y="425" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FAC_DET_REF_FACTURA</text>
    <path d="M1374,212 L1374,97 A8,8 0 0,1 1382,89 L1626,89" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1626,89 1613,92 1613,86" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1374" y="93" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_RESOL_SEC</text>
+   <text x="1374" y="92" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_RESOL_SEC</text>
    <polyline fill="none" points="1849,790 2152,790" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="2152,790 2139,793 2139,787" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="2000" y="785" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_MONEDA_REF_PAIS</text>
@@ -39,7 +39,7 @@
    <text x="251" y="647" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_FAC_REF_PAGO</text>
    <path d="M935,608 L935,291 A8,8 0 0,1 943,283 L1226,283" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1226,283 1213,286 1213,280" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="935" y="326" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_FAC_REF_FACTURA</text>
+   <text x="935" y="325" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_FAC_REF_FACTURA</text>
    <path d="M822,1282 L1280,1282 A8,8 0 0,1 1288,1290 L1288,1297 A8,8 0 0,0 1296,1305 L1734,1305" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1734,1305 1720,1308 1720,1302" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="1387" y="1309" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PUNTO_VE_REF_CIUDAD</text>
@@ -75,13 +75,13 @@
    <text x="2060" y="620" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PROD_COS_REF_PRODUCTO</text>
    <path d="M1925,544 L1925,369 A8,8 0 0,1 1933,361 L2204,361" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="2204,361 2190,364 2190,358" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1955" y="352" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PRO_SER_REF_MEMBRESIA</text>
+   <text x="1955" y="351" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PRO_SER_REF_MEMBRESIA</text>
    <path d="M1247,212 L1247,205 L785,205" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="785,205 798,202 798,208" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1247" y="217" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_PERSONA</text>
+   <text x="1247" y="216" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_PERSONA</text>
    <polyline fill="none" points="1521,252 1695,252" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1695,252 1682,255 1682,249" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1608" y="248" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_FACT_EST</text>
+   <text x="1608" y="247" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_FACT_EST</text>
    <path d="M55,701 L55,654 A8,8 0 0,1 63,646 L96,646 A8,8 0 0,0 104,638 L104,525" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="104,525 107,538 101,538" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="79" y="649" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_REF_PAGO_EST</text>
