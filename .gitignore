@@ -3,3 +3,5 @@
 .dbeaver/.data-sources.json.bak
 .dbeaver/.project-metadata.json.bak
 .dbeaver/credentials-config.json
+
+*.gz
