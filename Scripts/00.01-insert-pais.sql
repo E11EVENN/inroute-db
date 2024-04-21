@@ -1,1 +1,0 @@
-INSERT INTO public.pais (id,nombre,indicativo_telefonico,estado,fecha_registro,fecha_actualizacion,usuario_id,ip_address) VALUES ('COL','Colombia',57,1,'2024-04-07 23:07:03.584-05','2024-04-07 23:07:34.13206-05',NULL,NULL);
