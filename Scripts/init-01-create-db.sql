@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     22/04/2024 12:56:40 p. m.                    */
+/* Created on:     22/04/2024 4:01:52 p. m.                     */
 /*==============================================================*/
 
 
@@ -856,7 +856,7 @@ create table PAIS (
    ID                   VARCHAR(3)           not null,
    NOMBRE               VARCHAR(50)          not null,
    INDICATIVO_TELEFONICO NUMERIC(4)           not null,
-   CONTIENTE_ID         VARCHAR(2)           not null,
+   CONTINENTE_ID        VARCHAR(2)           not null,
    ESTADO               NUMERIC(1)           null default 1,
    FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
    FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
@@ -877,8 +877,8 @@ comment on column PAIS.NOMBRE is
 comment on column PAIS.INDICATIVO_TELEFONICO is
 'indicativo_telefonico';
 
-comment on column PAIS.CONTIENTE_ID is
-'contiente_id';
+comment on column PAIS.CONTINENTE_ID is
+'continente_id';
 
 comment on column PAIS.ESTADO is
 'estado';
@@ -1836,7 +1836,7 @@ alter table PAGO_FACTURAS
       on delete restrict on update restrict;
 
 alter table PAIS
-   add constraint FK_PAIS_RF_CONTINENTE foreign key (CONTIENTE_ID)
+   add constraint FK_PAIS_RF_CONTINENTE foreign key (CONTINENTE_ID)
       references CONTINENTE (ID)
       on delete restrict on update restrict;
 
