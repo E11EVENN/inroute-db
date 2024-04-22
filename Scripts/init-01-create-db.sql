@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     21/04/2024 11:58:49 p. m.                    */
+/* Created on:     22/04/2024 12:56:40 p. m.                    */
 /*==============================================================*/
 
 
@@ -644,8 +644,8 @@ comment on column MEMBRESIA_SERVICIOS.IP_ADDRESS is
 /*==============================================================*/
 create table MONEDA (
    ID                   VARCHAR(3)           not null,
-   NOMBRE               VARCHAR(20)          not null,
-   SIMBOLO              VARCHAR(5)           not null,
+   NOMBRE               VARCHAR(30)          not null,
+   SIMBOLO              VARCHAR(6)           not null,
    constraint PK_MONEDA primary key (ID)
 );
 
@@ -856,6 +856,7 @@ create table PAIS (
    ID                   VARCHAR(3)           not null,
    NOMBRE               VARCHAR(50)          not null,
    INDICATIVO_TELEFONICO NUMERIC(4)           not null,
+   CONTIENTE_ID         VARCHAR(2)           not null,
    ESTADO               NUMERIC(1)           null default 1,
    FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
    FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
@@ -875,6 +876,9 @@ comment on column PAIS.NOMBRE is
 
 comment on column PAIS.INDICATIVO_TELEFONICO is
 'indicativo_telefonico';
+
+comment on column PAIS.CONTIENTE_ID is
+'contiente_id';
 
 comment on column PAIS.ESTADO is
 'estado';
@@ -1829,6 +1833,11 @@ alter table PAGO_FACTURAS
 alter table PAGO_FACTURAS
    add constraint FK_PAGO_FAC_REF_PAGO foreign key (PAGO_ID)
       references PAGO (ID)
+      on delete restrict on update restrict;
+
+alter table PAIS
+   add constraint FK_PAIS_RF_CONTINENTE foreign key (CONTIENTE_ID)
+      references CONTINENTE (ID)
       on delete restrict on update restrict;
 
 alter table PERSONA
