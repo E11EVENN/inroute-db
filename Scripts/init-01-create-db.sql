@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     21/04/2024 7:07:56 p. m.                     */
+/* Created on:     21/04/2024 11:58:49 p. m.                    */
 /*==============================================================*/
 
 
@@ -645,8 +645,7 @@ comment on column MEMBRESIA_SERVICIOS.IP_ADDRESS is
 create table MONEDA (
    ID                   VARCHAR(3)           not null,
    NOMBRE               VARCHAR(20)          not null,
-   SIMBOLO              VARCHAR(3)           not null,
-   PAIS_ID              VARCHAR(3)           not null,
+   SIMBOLO              VARCHAR(5)           not null,
    constraint PK_MONEDA primary key (ID)
 );
 
@@ -662,8 +661,31 @@ comment on column MONEDA.NOMBRE is
 comment on column MONEDA.SIMBOLO is
 'simbolo';
 
-comment on column MONEDA.PAIS_ID is
+/*==============================================================*/
+/* Table: MONEDA_PAISES                                         */
+/*==============================================================*/
+create table MONEDA_PAISES (
+   PAIS_ID              VARCHAR(3)           not null,
+   MONEDA_ID            VARCHAR(3)           not null,
+   CORRIENTE            NUMERIC(1)           null default 1,
+   ESTADO               NUMERIC(1)           null default 1,
+   constraint PK_MONEDA_PAISES primary key (PAIS_ID, MONEDA_ID)
+);
+
+comment on table MONEDA_PAISES is
+'moneda_paises';
+
+comment on column MONEDA_PAISES.PAIS_ID is
 'pais_id';
+
+comment on column MONEDA_PAISES.MONEDA_ID is
+'moneda_id';
+
+comment on column MONEDA_PAISES.CORRIENTE is
+'corriente';
+
+comment on column MONEDA_PAISES.ESTADO is
+'estado';
 
 /*==============================================================*/
 /* Table: PAGO                                                  */
@@ -1759,8 +1781,13 @@ alter table MEMBRESIA_SERVICIOS
       references SERVICIO (ID)
       on delete restrict on update restrict;
 
-alter table MONEDA
-   add constraint FK_MONEDA_REF_PAIS foreign key (PAIS_ID)
+alter table MONEDA_PAISES
+   add constraint FK_PAIS_MON_REF_MONEDA foreign key (MONEDA_ID)
+      references MONEDA (ID)
+      on delete restrict on update restrict;
+
+alter table MONEDA_PAISES
+   add constraint FK_PAIS_MON_REF_PAIS foreign key (PAIS_ID)
       references PAIS (ID)
       on delete restrict on update restrict;
 
