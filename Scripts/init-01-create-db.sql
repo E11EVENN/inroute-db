@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     21/04/2024 6:30:46 p. m.                     */
+/* Created on:     21/04/2024 7:07:56 p. m.                     */
 /*==============================================================*/
 
 
@@ -1035,7 +1035,7 @@ create table PERSONA_TELEFONOS (
    TIPO_TELEFONO_ID     VARCHAR(3)           not null,
    PERSONA_ID           NUMERIC(10)          not null,
    NUMERO               NUMERIC(15)          not null,
-   WHATSAPP             BOOL                 null default false,
+   WHATSAPP             NUMERIC(1)           null default 0,
    ESTADO               NUMERIC(1)           null default 1,
    FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
    FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
@@ -1239,7 +1239,7 @@ comment on column PRODUCTO_COSTO.IP_ADDRESS is
 create table PUNTO_VENTA (
    ID                   VARCHAR(5)           not null,
    TIPO_PUNTO_VENTA_ID  VARCHAR(2)           not null,
-   CIUDAD_ID            VARCHAR(3)           not null,
+   CIUDAD_ID            VARCHAR(5)           not null,
    NOMBRE               VARCHAR(30)          not null,
    ESTADO               NUMERIC(1)           null default 1,
    FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,

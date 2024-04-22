@@ -4,7 +4,7 @@
 		"postgres-jdbc-18e366e93e6-6a5a8b3fc0b10162": {
 			"provider": "postgresql",
 			"driver": "postgres-jdbc",
-			"name": "inroute-dev",
+			"name": "inroute-db",
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
