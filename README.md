@@ -12,9 +12,9 @@ Modelos entidad relacion de cada uno de los dominios de la base de datos del pro
 | -------------- | ----------------------------------------------------------------- |
 | Persona        | ![modelo-persona.svg](./Diagrams/modelo-persona.svg)              |
 | Chat           | ![modelo-chat.svg](./Diagrams/modelo-chat.svg)                    |
-| Membresia      | ![modelo-membresia.svg](./Diagrams/modelo-membresia.svg)          |
 | Entrenamiento  | ![modelo-entrenamiento.svg](./Diagrams/modelo-entrenamiento.svg)  |
 | Facturacion    | ![modelo-facturacion.svg](./Diagrams/modelo-facturacion.svg)      |
+| Membresia      | ![modelo-membresia.svg](./Diagrams/modelo-membresia.svg)          |
 | Geografico     | ![modelo-geografico.svg](./Diagrams/modelo-geografico.svg)        |
 
 
