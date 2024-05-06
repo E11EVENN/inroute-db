@@ -10,11 +10,13 @@ Modelos entidad relacion de cada uno de los dominios de la base de datos del pro
 
 | Dominio        | Diagrama                                                          |
 | -------------- | ----------------------------------------------------------------- |
+| Persona        | ![modelo-persona.svg](./Diagrams/modelo-persona.svg)              |
+| Chat           | ![modelo-chat.svg](./Diagrams/modelo-chat.svg)                    |
+| Membresia      | ![modelo-membresia.svg](./Diagrams/modelo-membresia.svg)          |
 | Entrenamiento  | ![modelo-entrenamiento.svg](./Diagrams/modelo-entrenamiento.svg)  |
 | Facturacion    | ![modelo-facturacion.svg](./Diagrams/modelo-facturacion.svg)      |
 | Geografico     | ![modelo-geografico.svg](./Diagrams/modelo-geografico.svg)        |
-| Membresia      | ![modelo-membresia.svg](./Diagrams/modelo-membresia.svg)          |
-| Persona        | ![modelo-persona.svg](./Diagrams/modelo-persona.svg)              |
+
 
 ## Scripts
 Scripts para crear la base de datos y cargar informacion, ver aqui [Scripts](./Scripts)
