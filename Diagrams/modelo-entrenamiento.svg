@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="474mm" xmlns="http://www.w3.org/2000/svg" height="240mm" version="1.1" viewBox="0 0 1795 909" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="353mm" xmlns="http://www.w3.org/2000/svg" height="240mm" version="1.1" viewBox="0 0 1334 909" xmlns:xlink="http://www.w3.org/1999/xlink">
    <path d="M903,321 L1001,321 A8,8 0 0,0 1009,313 L1009,170" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1009,170 1012,183 1006,183" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="997" y="227" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_ENTRENAM_REF_TIPO_ENTRE</text>
@@ -36,7 +36,7 @@
    <text x="761" y="735" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_ENT_SEG_REF_ENT_PLAN</text>
    <path d="M626,203 L780,203 A8,8 0 0,1 788,211 L788,253" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="788,253 785,239 791,239" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="788" y="199" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_METENT_RF_ENTRENAMIENTO</text>
+   <text x="788" y="198" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_METENT_RF_ENTRENAMIENTO</text>
    <polyline fill="none" points="618,170 618,114" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="618,114 621,128 615,128" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="617" y="145" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_METENT_RF_METODOLOGIA</text>
@@ -352,88 +352,4 @@
    <text x="513" y="225" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">VARCHAR(5)</text>
    <text x="582" y="212" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">&lt;pk,fk2&gt;</text>
    <text x="582" y="225" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">&lt;pk,fk1&gt;</text>
-   <polygon fill="#ffffff" points="1427,195 1427,820 1793,820 1793,205 1783,195" stroke="#804000" stroke-width="1" stroke-linejoin="miter"/>
-   <line x1="1793" x2="1783" y1="205" y2="205" stroke="#804000" stroke-width="1"/>
-   <line x1="1783" x2="1783" y1="205" y2="195" stroke="#804000" stroke-width="1"/>
-   <defs>
-      <linearGradient id="Gradient13" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#c0c0c0"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="363" fill="url(#Gradient13)" width="42" height="42" stroke="#000000" stroke-width="1"/>
-   <image x="1555" y="363" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap1.png"/>
-   <defs>
-      <linearGradient id="Gradient14" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#8080ff"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="412" fill="url(#Gradient14)" width="42" height="43" stroke="#804000" stroke-width="1"/>
-   <image x="1555" y="412" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap2.png"/>
-   <defs>
-      <linearGradient id="Gradient15" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#e9c9e8"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="461" fill="url(#Gradient15)" width="42" height="43" stroke="#804000" stroke-width="1"/>
-   <image x="1555" y="459" width="185" height="48" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap3.png"/>
-   <defs>
-      <linearGradient id="Gradient16" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#80ff80"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="560" fill="url(#Gradient16)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1555" y="560" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap4.png"/>
-   <defs>
-      <linearGradient id="Gradient17" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#00aaaa"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="511" fill="url(#Gradient17)" width="42" height="42" stroke="#804000" stroke-width="1"/>
-   <image x="1555" y="511" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap5.png"/>
-   <image x="1554" y="314" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap6.png"/>
-   <defs>
-      <linearGradient id="Gradient18" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#d28902"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="313" fill="url(#Gradient18)" width="42" height="43" stroke="#804000" stroke-width="1"/>
-   <defs>
-      <linearGradient id="Gradient19" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#80ffff"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="609" fill="url(#Gradient19)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1555" y="610" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap7.png"/>
-   <defs>
-      <linearGradient id="Gradient20" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#ffff80"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="659" fill="url(#Gradient20)" width="42" height="42" stroke="#000000" stroke-width="1"/>
-   <image x="1555" y="659" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap8.png"/>
-   <defs>
-      <linearGradient id="Gradient21" x1="0%" x2="0%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#ff80ff"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="708" fill="url(#Gradient21)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1555" y="708" width="185" height="45" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap9.png"/>
-   <defs>
-      <linearGradient id="Gradient22" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#41c5ad"/>
-      </linearGradient>
-   </defs>
-   <rect x="1497" y="757" fill="url(#Gradient22)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1555" y="755" width="185" height="48" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap10.png"/>
-   <image x="1455" y="206" width="309" height="103" xlink:href="modelo-entrenamiento_svg_Files/svg_bitmap11.png"/>
 </svg>

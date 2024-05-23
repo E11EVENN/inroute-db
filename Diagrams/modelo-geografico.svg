@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="369mm" xmlns="http://www.w3.org/2000/svg" height="210mm" version="1.1" viewBox="0 0 1395 797" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="301mm" xmlns="http://www.w3.org/2000/svg" height="182mm" version="1.1" viewBox="0 0 1139 691" xmlns:xlink="http://www.w3.org/1999/xlink">
    <polyline fill="none" points="653,280 653,153" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="653,153 656,166 650,166" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="653" y="219" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_DEPTO_REF_PAIS</text>
    <polyline fill="none" points="637,551 637,418" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="637,418 640,431 634,431" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="637" y="457" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_CIUDAD_REF_DEPTO</text>
-   <path d="M391,196 L629,196 A8,8 0 0,0 637,188 L637,153" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M391,195 L629,195 A8,8 0 0,0 637,187 L637,153" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="637,153 640,166 634,166" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="637" y="206" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAIS_MON_REF_PAIS</text>
    <path d="M282,158 L282,110 A8,8 0 0,0 274,102 L156,102" fill="none" stroke="#800040" stroke-width="1"/>
@@ -162,88 +162,4 @@
    <text x="278" y="239" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">NUMERIC(1)</text>
    <text x="347" y="200" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">&lt;pk,fk1&gt;</text>
    <text x="347" y="213" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">&lt;pk,fk2&gt;</text>
-   <polygon fill="#ffffff" points="1028,170 1028,795 1393,795 1393,179 1384,170" stroke="#804000" stroke-width="1" stroke-linejoin="miter"/>
-   <line x1="1393" x2="1384" y1="179" y2="179" stroke="#804000" stroke-width="1"/>
-   <line x1="1384" x2="1384" y1="179" y2="170" stroke="#804000" stroke-width="1"/>
-   <defs>
-      <linearGradient id="Gradient7" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#c0c0c0"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="338" fill="url(#Gradient7)" width="42" height="42" stroke="#000000" stroke-width="1"/>
-   <image x="1155" y="338" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap1.png"/>
-   <defs>
-      <linearGradient id="Gradient8" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#8080ff"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="387" fill="url(#Gradient8)" width="42" height="43" stroke="#804000" stroke-width="1"/>
-   <image x="1155" y="387" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap2.png"/>
-   <defs>
-      <linearGradient id="Gradient9" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#e9c9e8"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="436" fill="url(#Gradient9)" width="42" height="43" stroke="#804000" stroke-width="1"/>
-   <image x="1155" y="434" width="185" height="48" xlink:href="modelo-geografico_svg_Files/svg_bitmap3.png"/>
-   <defs>
-      <linearGradient id="Gradient10" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#80ff80"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="535" fill="url(#Gradient10)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1155" y="535" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap4.png"/>
-   <defs>
-      <linearGradient id="Gradient11" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#00aaaa"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="486" fill="url(#Gradient11)" width="42" height="42" stroke="#804000" stroke-width="1"/>
-   <image x="1155" y="486" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap5.png"/>
-   <image x="1155" y="289" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap6.png"/>
-   <defs>
-      <linearGradient id="Gradient12" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#d28902"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="288" fill="url(#Gradient12)" width="42" height="43" stroke="#804000" stroke-width="1"/>
-   <defs>
-      <linearGradient id="Gradient13" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#80ffff"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="584" fill="url(#Gradient13)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1155" y="585" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap7.png"/>
-   <defs>
-      <linearGradient id="Gradient14" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#ffff80"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="634" fill="url(#Gradient14)" width="42" height="42" stroke="#000000" stroke-width="1"/>
-   <image x="1155" y="634" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap8.png"/>
-   <defs>
-      <linearGradient id="Gradient15" x1="0%" x2="0%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#ff80ff"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="683" fill="url(#Gradient15)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1155" y="683" width="185" height="45" xlink:href="modelo-geografico_svg_Files/svg_bitmap9.png"/>
-   <defs>
-      <linearGradient id="Gradient16" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
-         <stop offset="5%" stop-color="#ffffff"/>
-         <stop offset="95%" stop-color="#41c5ad"/>
-      </linearGradient>
-   </defs>
-   <rect x="1098" y="732" fill="url(#Gradient16)" width="42" height="43" stroke="#000000" stroke-width="1"/>
-   <image x="1155" y="730" width="185" height="48" xlink:href="modelo-geografico_svg_Files/svg_bitmap10.png"/>
-   <image x="1056" y="181" width="309" height="103" xlink:href="modelo-geografico_svg_Files/svg_bitmap11.png"/>
 </svg>
