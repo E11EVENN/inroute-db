@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="665mm" xmlns="http://www.w3.org/2000/svg" height="365mm" version="1.1" viewBox="0 0 2515 1380" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="777mm" xmlns="http://www.w3.org/2000/svg" height="365mm" version="1.1" viewBox="0 0 2938 1380" xmlns:xlink="http://www.w3.org/1999/xlink">
    <path d="M2338,1095 L2338,1017 A8,8 0 0,1 2346,1009 L2358,1009 A8,8 0 0,0 2366,1001 L2366,921" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="2366,921 2369,935 2363,935" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="2352" y="1012" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_DEPTO_REF_PAIS</text>
@@ -19,19 +19,15 @@
    <path d="M1463,1032 L1662,1032 A8,8 0 0,0 1670,1024 L1670,815" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1670,815 1673,828 1667,828" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="1643" y="985" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_CUPON_REF_MONEDA</text>
-   <path d="M875,895 L875,951 L875,951 L875,1032" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M875,895 L875,945 L875,945 L875,1032" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="875,1032 872,1019 878,1019" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="875" y="954" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_DET_REF_TIPO_PAGO</text>
-   <path d="M942,764 L1341,764 A8,8 0 0,1 1349,772 L1349,966" fill="none" stroke="#800040" stroke-width="1"/>
-   <polygon fill="#800040" points="1349,966 1346,953 1352,953" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1348" y="759" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_DET_REF_CUPON</text>
-   <polyline fill="none" points="1641,796 1354,796" stroke="#800040" stroke-width="1"/>
-   <path d="M1343,796 L1333,796 L1333,790 L942,790" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1354,796 A5,5 0 0,0 1349,790" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1349" x2="1349" y1="790" y2="790" stroke="#800040" stroke-width="1"/>
-   <path d="M1349,790 A5,5 0 0,0 1343,796" fill="none" stroke="#800040" stroke-width="1"/>
+   <text x="875" y="948" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_DET_REF_TIPO_PAGO</text>
+   <path d="M942,807 L1340,807 A8,8 0 0,1 1348,815 L1348,966" fill="none" stroke="#800040" stroke-width="1"/>
+   <polygon fill="#800040" points="1348,966 1345,953 1351,953" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="1348" y="802" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_DET_REF_CUPON</text>
+   <path d="M942,790 L1290,790 L1290,796 L1641,796" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1641,796 1628,799 1628,793" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1474" y="773" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_DET_REF_MONEDA</text>
+   <text x="1431" y="773" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_DET_REF_MONEDA</text>
    <polyline fill="none" points="633,775 297,775" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="297,775 310,772 310,778" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="464" y="771" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_DET_REF_PAGO</text>
@@ -47,36 +43,36 @@
    <polyline fill="none" points="599,1230 599,1085" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="599,1085 602,1099 596,1099" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="598" y="1161" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PUNTO_VE_REF_TIPO_PUN_VEN</text>
-   <path d="M822,1305 L1078,1305 A8,8 0 0,0 1086,1297 L1086,1287" fill="none" stroke="#800040" stroke-width="1"/>
-   <polyline fill="none" points="1086,1276 1086,795" stroke="#800040" stroke-width="1"/>
-   <path d="M1086,1287 A5,5 0 0,0 1092,1282" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1092" x2="1092" y1="1282" y2="1282" stroke="#800040" stroke-width="1"/>
-   <path d="M1092,1282 A5,5 0 0,0 1086,1276" fill="none" stroke="#800040" stroke-width="1"/>
-   <polyline fill="none" points="1086,785 1086,769" stroke="#800040" stroke-width="1"/>
-   <path d="M1086,795 A5,5 0 0,0 1092,790" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1092" x2="1092" y1="790" y2="790" stroke="#800040" stroke-width="1"/>
-   <path d="M1092,790 A5,5 0 0,0 1086,785" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1086,759 L1086,307 A8,8 0 0,1 1094,299 L1226,299" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1086,769 A5,5 0 0,0 1092,764" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1092" x2="1092" y1="764" y2="764" stroke="#800040" stroke-width="1"/>
-   <path d="M1092,764 A5,5 0 0,0 1086,759" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M822,1305 L1120,1305 A8,8 0 0,0 1128,1297 L1128,1287" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1128,1276 1128,812" stroke="#800040" stroke-width="1"/>
+   <path d="M1128,1287 A5,5 0 0,0 1133,1282" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1133" x2="1133" y1="1282" y2="1282" stroke="#800040" stroke-width="1"/>
+   <path d="M1133,1282 A5,5 0 0,0 1128,1276" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1128,801 1128,795" stroke="#800040" stroke-width="1"/>
+   <path d="M1128,812 A5,5 0 0,0 1133,807" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1133" x2="1133" y1="807" y2="807" stroke="#800040" stroke-width="1"/>
+   <path d="M1133,807 A5,5 0 0,0 1128,801" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1128,785 L1128,307 A8,8 0 0,1 1136,299 L1226,299" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1128,795 A5,5 0 0,0 1133,790" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1133" x2="1133" y1="790" y2="790" stroke="#800040" stroke-width="1"/>
+   <path d="M1133,790 A5,5 0 0,0 1128,785" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="822,1305 836,1302 836,1308" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1086" y="798" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_PUNTO_VEN</text>
+   <text x="1127" y="798" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_PUNTO_VEN</text>
    <path d="M247,850 L247,1290 A8,8 0 0,0 255,1298 L528,1298" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="528,1298 514,1301 514,1295" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="247" y="1301" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAGO_REF_PUNTO_VEN</text>
    <path d="M1525,493 L1697,493 A8,8 0 0,1 1705,501 L1705,517" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1705,517 1702,503 1708,503" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="1705" y="488" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_DET_REF_PROD</text>
-   <path d="M1820,517 L1820,475 A8,8 0 0,0 1812,467 L1780,467 A8,8 0 0,1 1772,459 L1772,413" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1820,517 L1820,462 A8,8 0 0,0 1812,454 L1780,454 A8,8 0 0,1 1772,446 L1772,413" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1772,413 1775,426 1769,426" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1792" y="447" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PROD_SER_REF_TIPO_PRO</text>
+   <text x="1792" y="434" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PROD_SER_REF_TIPO_PRO</text>
    <polyline fill="none" points="2152,598 1968,598" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1968,598 1981,595 1981,601" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="2060" y="593" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PROD_COS_REF_PRODUCTO</text>
-   <path d="M1925,517 L1925,369 A8,8 0 0,1 1933,361 L2204,361" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1926,517 L1926,369 A8,8 0 0,1 1934,361 L2204,361" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="2204,361 2190,364 2190,358" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1955" y="351" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PRO_SER_REF_MEMBRESIA</text>
+   <text x="1956" y="351" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PRO_SER_REF_MEMBRESIA</text>
    <path d="M1247,212 L1247,205 L785,205" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="785,205 798,202 798,208" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="1247" y="216" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_PERSONA</text>
@@ -89,55 +85,67 @@
    <path d="M1463,1072 L1634,1072 A8,8 0 0,1 1642,1080 L1642,1149" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1642,1149 1639,1135 1645,1135" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="1641" y="1068" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_CUPON_REF_TIPO_CUPON</text>
-   <path d="M1641,764 L1604,764 A8,8 0 0,1 1596,756 L1596,498" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1596,488 L1596,301 A8,8 0 0,0 1588,293 L1521,293" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1596,498 A5,5 0 0,0 1601,493" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1601" x2="1601" y1="493" y2="493" stroke="#800040" stroke-width="1"/>
-   <path d="M1601,493 A5,5 0 0,0 1596,488" fill="none" stroke="#800040" stroke-width="1"/>
-   <polygon fill="#800040" points="1641,764 1628,767 1628,761" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1598" y="425" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_MONEDA</text>
-   <path d="M2220,813 L1865,813 A8,8 0 0,1 1857,805 L1857,722 A8,8 0 0,0 1849,714 L1601,714" fill="none" stroke="#800040" stroke-width="1"/>
-   <polyline fill="none" points="1591,714 1092,714" stroke="#800040" stroke-width="1"/>
-   <path d="M1601,714 A5,5 0 0,0 1596,708" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1596" x2="1596" y1="708" y2="708" stroke="#800040" stroke-width="1"/>
-   <path d="M1596,708 A5,5 0 0,0 1591,714" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1081,714 L627,714 A8,8 0 0,1 619,706 L619,657" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1092,714 A5,5 0 0,0 1086,708" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1086" x2="1086" y1="708" y2="708" stroke="#800040" stroke-width="1"/>
-   <path d="M1086,708 A5,5 0 0,0 1081,714" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1665,741 1665,498" stroke="#800040" stroke-width="1"/>
+   <path d="M1665,488 L1665,301 A8,8 0 0,0 1657,293 L1521,293" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1665,498 A5,5 0 0,0 1670,493" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1670" x2="1670" y1="493" y2="493" stroke="#800040" stroke-width="1"/>
+   <path d="M1670,493 A5,5 0 0,0 1665,488" fill="none" stroke="#800040" stroke-width="1"/>
+   <polygon fill="#800040" points="1665,741 1662,727 1668,727" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="1667" y="189" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_FACTURA_REF_MONEDA</text>
+   <path d="M2367,771 L2367,717 A8,8 0 0,0 2359,709 L1670,709" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1660,709 1133,709" stroke="#800040" stroke-width="1"/>
+   <path d="M1670,709 A5,5 0 0,0 1665,704" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1665" x2="1665" y1="704" y2="704" stroke="#800040" stroke-width="1"/>
+   <path d="M1665,704 A5,5 0 0,0 1660,709" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1122,709 L627,709 A8,8 0 0,1 619,701 L619,657" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1133,709 A5,5 0 0,0 1128,704" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1128" x2="1128" y1="704" y2="704" stroke="#800040" stroke-width="1"/>
+   <path d="M1128,704 A5,5 0 0,0 1122,709" fill="none" stroke="#800040" stroke-width="1"/>
    <polyline fill="none" points="619,647 619,394" stroke="#800040" stroke-width="1"/>
    <path d="M619,657 A5,5 0 0,0 624,652" fill="none" stroke="#800040" stroke-width="1"/>
    <line x1="624" x2="624" y1="652" y2="652" stroke="#800040" stroke-width="1"/>
    <path d="M624,652 A5,5 0 0,0 619,647" fill="none" stroke="#800040" stroke-width="1"/>
-   <polygon fill="#800040" points="2220,813 2207,816 2207,810" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="1396" y="711" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PERSONA_REF_PAIS</text>
-   <path d="M1734,1270 L1179,1270 A8,8 0 0,1 1171,1262 L1171,795" fill="none" stroke="#800040" stroke-width="1"/>
-   <polyline fill="none" points="1171,785 1171,769" stroke="#800040" stroke-width="1"/>
-   <path d="M1171,795 A5,5 0 0,0 1176,790" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1176" x2="1176" y1="790" y2="790" stroke="#800040" stroke-width="1"/>
-   <path d="M1176,790 A5,5 0 0,0 1171,785" fill="none" stroke="#800040" stroke-width="1"/>
-   <polyline fill="none" points="1171,759 1171,719" stroke="#800040" stroke-width="1"/>
-   <path d="M1171,769 A5,5 0 0,0 1176,764" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1176" x2="1176" y1="764" y2="764" stroke="#800040" stroke-width="1"/>
-   <path d="M1176,764 A5,5 0 0,0 1171,759" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1171,708 L1171,520 A8,8 0 0,0 1163,512 L1092,512" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M1171,719 A5,5 0 0,0 1176,714" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1176" x2="1176" y1="714" y2="714" stroke="#800040" stroke-width="1"/>
-   <path d="M1176,714 A5,5 0 0,0 1171,708" fill="none" stroke="#800040" stroke-width="1"/>
-   <polyline fill="none" points="1081,512 940,512" stroke="#800040" stroke-width="1"/>
-   <path d="M1092,512 A5,5 0 0,0 1086,507" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="1086" x2="1086" y1="507" y2="507" stroke="#800040" stroke-width="1"/>
-   <path d="M1086,507 A5,5 0 0,0 1081,512" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M929,512 L665,512 A8,8 0 0,1 657,504 L657,394" fill="none" stroke="#800040" stroke-width="1"/>
-   <path d="M940,512 A5,5 0 0,0 935,507" fill="none" stroke="#800040" stroke-width="1"/>
-   <line x1="935" x2="935" y1="507" y2="507" stroke="#800040" stroke-width="1"/>
-   <path d="M935,507 A5,5 0 0,0 929,512" fill="none" stroke="#800040" stroke-width="1"/>
-   <polygon fill="#800040" points="1734,1270 1720,1273 1720,1267" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="783" y="513" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PERSONA_REF_CIUDAD</text>
+   <polygon fill="#800040" points="2367,771 2364,757 2370,757" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="1032" y="706" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PERSONA_REF_PAIS</text>
+   <path d="M1864,1240 L1864,937 A8,8 0 0,0 1856,929 L1675,929" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1665,929 1354,929" stroke="#800040" stroke-width="1"/>
+   <path d="M1675,929 A5,5 0 0,0 1670,924" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1670" x2="1670" y1="924" y2="924" stroke="#800040" stroke-width="1"/>
+   <path d="M1670,924 A5,5 0 0,0 1665,929" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1343,929 1133,929" stroke="#800040" stroke-width="1"/>
+   <path d="M1354,929 A5,5 0 0,0 1348,924" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1348" x2="1348" y1="924" y2="924" stroke="#800040" stroke-width="1"/>
+   <path d="M1348,924 A5,5 0 0,0 1343,929" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1122,929 880,929" stroke="#800040" stroke-width="1"/>
+   <path d="M1133,929 A5,5 0 0,0 1128,924" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1128" x2="1128" y1="924" y2="924" stroke="#800040" stroke-width="1"/>
+   <path d="M1128,924 A5,5 0 0,0 1122,929" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M869,929 L611,929 A8,8 0 0,1 603,921 L603,781" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M880,929 A5,5 0 0,0 875,924" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="875" x2="875" y1="924" y2="924" stroke="#800040" stroke-width="1"/>
+   <path d="M875,924 A5,5 0 0,0 869,929" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="603,770 603,657" stroke="#800040" stroke-width="1"/>
+   <path d="M603,781 A5,5 0 0,0 608,775" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="608" x2="608" y1="775" y2="775" stroke="#800040" stroke-width="1"/>
+   <path d="M608,775 A5,5 0 0,0 603,770" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="603,647 603,394" stroke="#800040" stroke-width="1"/>
+   <path d="M603,657 A5,5 0 0,0 608,652" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="608" x2="608" y1="652" y2="652" stroke="#800040" stroke-width="1"/>
+   <path d="M608,652 A5,5 0 0,0 603,647" fill="none" stroke="#800040" stroke-width="1"/>
+   <polygon fill="#800040" points="1864,1240 1861,1227 1867,1227" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="846" y="931" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PERSONA_REF_CIUDAD</text>
    <path d="M1997,981 L1997,854 A8,8 0 0,1 2005,846 L2220,846" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="2220,846 2207,849 2207,843" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="2015" y="888" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAIS_MON_REF_PAIS</text>
-   <path d="M1907,1032 L1773,1032 A8,8 0 0,1 1765,1024 L1765,815" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1765,815 1765,924" stroke="#800040" stroke-width="1"/>
+   <path d="M1765,935 L1765,1024 A8,8 0 0,0 1773,1032 L1858,1032" fill="none" stroke="#800040" stroke-width="1"/>
+   <path d="M1765,935 A5,5 0 0,0 1771,929" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1771" x2="1771" y1="929" y2="929" stroke="#800040" stroke-width="1"/>
+   <path d="M1771,929 A5,5 0 0,0 1765,924" fill="none" stroke="#800040" stroke-width="1"/>
+   <polyline fill="none" points="1869,1032 1907,1032" stroke="#800040" stroke-width="1"/>
+   <path d="M1869,1032 A5,5 0 0,0 1864,1027" fill="none" stroke="#800040" stroke-width="1"/>
+   <line x1="1864" x2="1864" y1="1027" y2="1027" stroke="#800040" stroke-width="1"/>
+   <path d="M1864,1027 A5,5 0 0,0 1858,1032" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="1765,815 1768,828 1762,828" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="1778" y="905" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PAIS_MON_REF_MONEDA</text>
    <rect x="1226" y="212" fill="#ffffff" width="0" height="0" stroke="none" stroke-width="0"/>
@@ -584,7 +592,7 @@
    <text x="2225" y="813" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">id</text>
    <text x="2225" y="826" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">nombre</text>
    <text x="2225" y="839" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">indicativo_telefonico</text>
-   <text x="2225" y="852" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">contiente_id</text>
+   <text x="2225" y="852" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">continente_id</text>
    <text x="2225" y="865" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">estado</text>
    <text x="2225" y="878" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">fecha_registro</text>
    <text x="2225" y="891" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">fecha_actualizacion</text>
@@ -805,4 +813,88 @@
    <text x="1973" y="1062" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">NUMERIC(1)</text>
    <text x="2042" y="1023" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">&lt;pk,fk1&gt;</text>
    <text x="2042" y="1036" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">&lt;pk,fk2&gt;</text>
+   <polygon fill="#ffffff" points="2570,2 2570,627 2936,627 2936,11 2926,2" stroke="#804000" stroke-width="1" stroke-linejoin="miter"/>
+   <line x1="2936" x2="2926" y1="11" y2="11" stroke="#804000" stroke-width="1"/>
+   <line x1="2926" x2="2926" y1="11" y2="2" stroke="#804000" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient25" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0c0c0"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="169" fill="url(#Gradient25)" width="43" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="2698" y="170" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap1.png"/>
+   <defs>
+      <linearGradient id="Gradient26" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#8080ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="219" fill="url(#Gradient26)" width="43" height="42" stroke="#804000" stroke-width="1"/>
+   <image x="2698" y="219" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap2.png"/>
+   <defs>
+      <linearGradient id="Gradient27" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#e9c9e8"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="268" fill="url(#Gradient27)" width="43" height="43" stroke="#804000" stroke-width="1"/>
+   <image x="2698" y="265" width="185" height="48" xlink:href="modelo-facturacion_svg_Files/svg_bitmap3.png"/>
+   <defs>
+      <linearGradient id="Gradient28" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#80ff80"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="367" fill="url(#Gradient28)" width="43" height="42" stroke="#000000" stroke-width="1"/>
+   <image x="2698" y="367" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap4.png"/>
+   <defs>
+      <linearGradient id="Gradient29" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#00aaaa"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="317" fill="url(#Gradient29)" width="43" height="43" stroke="#804000" stroke-width="1"/>
+   <image x="2698" y="318" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap5.png"/>
+   <image x="2698" y="120" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap6.png"/>
+   <defs>
+      <linearGradient id="Gradient30" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d28902"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="120" fill="url(#Gradient30)" width="43" height="43" stroke="#804000" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient31" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#80ffff"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="416" fill="url(#Gradient31)" width="43" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="2698" y="416" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap7.png"/>
+   <defs>
+      <linearGradient id="Gradient32" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff80"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="465" fill="url(#Gradient32)" width="43" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="2698" y="466" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap8.png"/>
+   <defs>
+      <linearGradient id="Gradient33" x1="0%" x2="0%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ff80ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="515" fill="url(#Gradient33)" width="43" height="42" stroke="#000000" stroke-width="1"/>
+   <image x="2698" y="515" width="185" height="45" xlink:href="modelo-facturacion_svg_Files/svg_bitmap9.png"/>
+   <defs>
+      <linearGradient id="Gradient34" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#41c5ad"/>
+      </linearGradient>
+   </defs>
+   <rect x="2640" y="564" fill="url(#Gradient34)" width="43" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="2698" y="561" width="185" height="48" xlink:href="modelo-facturacion_svg_Files/svg_bitmap10.png"/>
+   <image x="2598" y="13" width="309" height="103" xlink:href="modelo-facturacion_svg_Files/svg_bitmap11.png"/>
 </svg>

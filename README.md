@@ -16,7 +16,8 @@ Modelos entidad relacion de cada uno de los dominios de la base de datos del pro
 | Facturacion    | ![modelo-facturacion.svg](./Diagrams/modelo-facturacion.svg)      |
 | Membresia      | ![modelo-membresia.svg](./Diagrams/modelo-membresia.svg)          |
 | Geografico     | ![modelo-geografico.svg](./Diagrams/modelo-geografico.svg)        |
-
+| Evento         | ![modelo-evento.svg](./Diagrams/modelo-evento.svg)                |
+| Salud          | ![modelo-salud.svg](./Diagrams/modelo-salud.svg)                  |
 
 ## Scripts
 Scripts para crear la base de datos y cargar informacion, ver aqui [Scripts](./Scripts)

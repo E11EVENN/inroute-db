@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="178mm" xmlns="http://www.w3.org/2000/svg" height="171mm" version="1.1" viewBox="0 0 675 649" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="285mm" xmlns="http://www.w3.org/2000/svg" height="171mm" version="1.1" viewBox="0 0 1078 649" xmlns:xlink="http://www.w3.org/1999/xlink">
    <polyline fill="none" points="149,164 149,562" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="149,562 146,549 152,549" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="149" y="366" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_PRO_SER_REF_MEMBRESIA</text>
    <path d="M526,529 L526,597 A8,8 0 0,1 518,605 L244,605" fill="none" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="244,605 258,602 258,608" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="525" y="577" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_MEMB_REF_MEMB_SER</text>
-   <polyline fill="none" points="526,191 526,69" stroke="#800040" stroke-width="1"/>
-   <polygon fill="#800040" points="526,69 529,82 523,82" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
-   <text x="525" y="133" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_SERVICIO_REF_TIPO_SERVICIO</text>
+   <polyline fill="none" points="534,191 534,69" stroke="#800040" stroke-width="1"/>
+   <polygon fill="#800040" points="534,69 537,82 531,82" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="533" y="133" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_SERVICIO_REF_TIPO_SERVICIO</text>
    <polyline fill="none" points="526,406 526,264" stroke="#800040" stroke-width="1"/>
    <polygon fill="#800040" points="526,264 529,278 523,278" stroke="#800040" stroke-width="1" stroke-linejoin="miter"/>
    <text x="525" y="338" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">FK_MEMB_REF_SERVICIO</text>
@@ -133,4 +133,88 @@
    <text x="499" y="50" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">VARCHAR(2)</text>
    <text x="499" y="63" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start">VARCHAR(25)</text>
    <text x="574" y="50" fill="#000000" font-size="10" font-family="'Arial Unicode MS','Arial'" text-anchor="start" text-decoration="underline">&lt;pk&gt;</text>
+   <polygon fill="#ffffff" points="710,2 710,627 1076,627 1076,11 1066,2" stroke="#804000" stroke-width="1" stroke-linejoin="miter"/>
+   <line x1="1076" x2="1066" y1="11" y2="11" stroke="#804000" stroke-width="1"/>
+   <line x1="1066" x2="1066" y1="11" y2="2" stroke="#804000" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient6" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0c0c0"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="169" fill="url(#Gradient6)" width="42" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="838" y="170" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap1.png"/>
+   <defs>
+      <linearGradient id="Gradient7" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#8080ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="219" fill="url(#Gradient7)" width="42" height="42" stroke="#804000" stroke-width="1"/>
+   <image x="838" y="219" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap2.png"/>
+   <defs>
+      <linearGradient id="Gradient8" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#e9c9e8"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="268" fill="url(#Gradient8)" width="42" height="43" stroke="#804000" stroke-width="1"/>
+   <image x="838" y="265" width="185" height="48" xlink:href="modelo-membresia_svg_Files/svg_bitmap3.png"/>
+   <defs>
+      <linearGradient id="Gradient9" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#80ff80"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="367" fill="url(#Gradient9)" width="42" height="42" stroke="#000000" stroke-width="1"/>
+   <image x="838" y="367" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap4.png"/>
+   <defs>
+      <linearGradient id="Gradient10" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#00aaaa"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="317" fill="url(#Gradient10)" width="42" height="43" stroke="#804000" stroke-width="1"/>
+   <image x="838" y="318" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap5.png"/>
+   <image x="838" y="120" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap6.png"/>
+   <defs>
+      <linearGradient id="Gradient11" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d28902"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="120" fill="url(#Gradient11)" width="42" height="43" stroke="#804000" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient12" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#80ffff"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="416" fill="url(#Gradient12)" width="42" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="838" y="416" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap7.png"/>
+   <defs>
+      <linearGradient id="Gradient13" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff80"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="465" fill="url(#Gradient13)" width="42" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="838" y="466" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap8.png"/>
+   <defs>
+      <linearGradient id="Gradient14" x1="0%" x2="0%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ff80ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="515" fill="url(#Gradient14)" width="42" height="42" stroke="#000000" stroke-width="1"/>
+   <image x="838" y="515" width="185" height="45" xlink:href="modelo-membresia_svg_Files/svg_bitmap9.png"/>
+   <defs>
+      <linearGradient id="Gradient15" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#41c5ad"/>
+      </linearGradient>
+   </defs>
+   <rect x="780" y="564" fill="url(#Gradient15)" width="42" height="43" stroke="#000000" stroke-width="1"/>
+   <image x="838" y="561" width="185" height="48" xlink:href="modelo-membresia_svg_Files/svg_bitmap10.png"/>
+   <image x="738" y="12" width="309" height="103" xlink:href="modelo-membresia_svg_Files/svg_bitmap11.png"/>
 </svg>
