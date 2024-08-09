@@ -1,1956 +1,2707 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     22/04/2024 11:24:10 p. m.                    */
+/* Created on:     9/08/2024 12:30:31 a. m.                     */
 /*==============================================================*/
 
 
-drop index idx_pais_numero;
+drop index IDX_PAIS_NUMERO;
 
-create sequence entrenamiento_actividad_seq
+create sequence CHAT_CONVERSACION_SEQ
 increment 1
 start 1;
 
-create sequence entrenamiento_plan_seq
+create sequence CHAT_MENSAJE_MEDIA_SEQ
 increment 1
 start 1;
 
-create sequence entrenamiento_seguimiento_seq
+create sequence CHAT_MENSAJE_SEQ
 increment 1
 start 1;
 
-create sequence factura_detalle_seq
+create sequence CHAT_MULTIMEDIA_SEQ
 increment 1
 start 1;
 
-create sequence factura_seq
+create sequence CHAT_SEQ
 increment 1
 start 1;
 
-create sequence membresia_servicios_seq
+create sequence ENTRENAMIENTO_ACTIVIDAD_SEQ
 increment 1
 start 1;
 
-create sequence pago_detalles_seq
+create sequence ENTRENAMIENTO_PLAN_SEQ
 increment 1
 start 1;
 
-create sequence pago_facturas_seq
+create sequence ENTRENAMIENTO_SEGUIMIENTO_SEQ
 increment 1
 start 1;
 
-create sequence pago_seq
+create sequence EVENTO_PARTICIPANTES_SEQ
 increment 1
 start 1;
 
-create sequence persona_emails_seq
+create sequence EVENTO_SEQ
 increment 1
 start 1;
 
-create sequence persona_seq
+create sequence FACTURA_DETALLE_SEQ
 increment 1
 start 1;
 
-create sequence persona_telefonos_seq
+create sequence FACTURA_SEQ
 increment 1
 start 1;
 
-create sequence producto_costo_seq
+create sequence MEMBRESIA_SERVICIOS_SEQ
 increment 1
 start 1;
 
-create sequence resolucion_sec_seq
+create sequence PAGO_DETALLES_SEQ
 increment 1
 start 1;
 
-create sequence resolucion_seq
+create sequence PAGO_FACTURAS_SEQ
+increment 1
+start 1;
+
+create sequence PAGO_SEQ
+increment 1
+start 1;
+
+create sequence PERSONA_EMAILS_SEQ
+increment 1
+start 1;
+
+create sequence PERSONA_SEQ
+increment 1
+start 1;
+
+create sequence PERSONA_TELEFONOS_SEQ
+increment 1
+start 1;
+
+create sequence PRODUCTO_COSTO_SEQ
+increment 1
+start 1;
+
+create sequence RESOLUCION_SEC_SEQ
+increment 1
+start 1;
+
+create sequence RESOLUCION_SEQ
 increment 1
 start 1;
 
 /*==============================================================*/
-/* Table: ciudad                                                */
+/* Table: CHAT_CONVERSACION                                     */
 /*==============================================================*/
-create table ciudad (
-   id                   varchar(5)           not null,
-   nombre               varchar(30)          not null,
-   depto_id             varchar(2)           not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_ciudad primary key (id)
+create table CHAT_CONVERSACION (
+   ID                   NUMERIC(20)          not null default NEXTVAL('chat_seq'),
+   PERSONA_TELEFONOS_ID NUMERIC(5)           not null default NEXTVAL('chat_seq'),
+   CHAT_ESTADO_ID       VARCHAR(20)          not null,
+   FECHA_HORA_INICIO    TIMESTAMP WITH TIME ZONE not null,
+   FECHA_HORA_FIN       TIMESTAMP WITH TIME ZONE null,
+   constraint PK_CHAT_CONVERSACION primary key (ID)
 );
 
-comment on table ciudad is
-'ciudad';
+comment on table CHAT_CONVERSACION is
+'chat_conversacion';
 
-comment on column ciudad.id is
+comment on column CHAT_CONVERSACION.ID is
 'id';
 
-comment on column ciudad.nombre is
-'nombre';
+comment on column CHAT_CONVERSACION.PERSONA_TELEFONOS_ID is
+'persona_telefonos_id';
 
-comment on column ciudad.depto_id is
-'depto_id';
+comment on column CHAT_CONVERSACION.CHAT_ESTADO_ID is
+'chat_estado_id';
 
-comment on column ciudad.estado is
-'estado';
+comment on column CHAT_CONVERSACION.FECHA_HORA_INICIO is
+'fecha_hora_inicio';
 
-comment on column ciudad.fecha_registro is
-'fecha_registro';
-
-comment on column ciudad.fecha_actualizacion is
-'fecha_actualizacion';
-
-comment on column ciudad.usuario_id is
-'usuario_id';
-
-comment on column ciudad.ip_address is
-'ip_address';
+comment on column CHAT_CONVERSACION.FECHA_HORA_FIN is
+'fecha_hora_fin';
 
 /*==============================================================*/
-/* Table: continente                                            */
+/* Table: CHAT_ENTRENAMIENTO_PLAN                               */
 /*==============================================================*/
-create table continente (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   descripcion          varchar(100)         null,
-   constraint pk_continente primary key (id)
+create table CHAT_ENTRENAMIENTO_PLAN (
+   CHAT_CONVERSACION_ID NUMERIC(20)          not null default NEXTVAL('chat_mensaje_seq'),
+   ENTRENAMIENTO_PLAN_ID NUMERIC(15)          not null default nextval('entrenamiento_plan_seq'),
+   constraint PK_CHAT_ENTRENAMIENTO_PLAN primary key (CHAT_CONVERSACION_ID, ENTRENAMIENTO_PLAN_ID)
 );
 
-comment on table continente is
-'continente';
+comment on table CHAT_ENTRENAMIENTO_PLAN is
+'chat_entrenamiento_plan';
 
-comment on column continente.id is
-'id';
+comment on column CHAT_ENTRENAMIENTO_PLAN.CHAT_CONVERSACION_ID is
+'chat_conversacion_id';
 
-comment on column continente.nombre is
-'nombre';
-
-comment on column continente.descripcion is
-'descripcion';
-
-/*==============================================================*/
-/* Table: cupon                                                 */
-/*==============================================================*/
-create table cupon (
-   id                   varchar(5)           not null,
-   tipo_cupon_id        varchar(2)           not null,
-   nombre               varchar(20)          not null,
-   descuento_porcentaje numeric(5,2)         null default 0
-      constraint ckc_descuento_porcent_cupon check (descuento_porcentaje is null or (descuento_porcentaje between 0 and 100)),
-   moneda_id            varchar(3)           not null,
-   valor                numeric(15,2)        null default 0,
-   valor_tope           numeric(15,2)        null default 0,
-   aplica_tope          numeric(1)           null default 0
-      constraint ckc_aplica_tope_cupon check (aplica_tope is null or (aplica_tope between 0 and 1)),
-   vigente_desde        date                 null default current_date,
-   vigente_hasta        date                 null default current_date,
-   estado               numeric(1)           null default 1,
-   constraint pk_cupon primary key (id)
-);
-
-comment on table cupon is
-'cupon';
-
-comment on column cupon.id is
-'id';
-
-comment on column cupon.tipo_cupon_id is
-'tipo_cupon_id';
-
-comment on column cupon.nombre is
-'nombre';
-
-comment on column cupon.descuento_porcentaje is
-'descuento_porcentaje';
-
-comment on column cupon.moneda_id is
-'moneda_id';
-
-comment on column cupon.valor is
-'valor';
-
-comment on column cupon.valor_tope is
-'valor_tope';
-
-comment on column cupon.aplica_tope is
-'aplica_tope';
-
-comment on column cupon.vigente_desde is
-'vigente_desde';
-
-comment on column cupon.vigente_hasta is
-'vigente_hasta';
-
-comment on column cupon.estado is
-'estado';
-
-/*==============================================================*/
-/* Table: depto                                                 */
-/*==============================================================*/
-create table depto (
-   id                   varchar(2)           not null,
-   nombre               varchar(30)          not null,
-   pais_id              varchar(3)           not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_depto primary key (id)
-);
-
-comment on table depto is
-'depto';
-
-comment on column depto.id is
-'id';
-
-comment on column depto.nombre is
-'nombre';
-
-comment on column depto.pais_id is
-'pais_id';
-
-comment on column depto.estado is
-'estado';
-
-comment on column depto.fecha_registro is
-'fecha_registro';
-
-comment on column depto.fecha_actualizacion is
-'fecha_actualizacion';
-
-comment on column depto.usuario_id is
-'usuario_id';
-
-comment on column depto.ip_address is
-'ip_address';
-
-/*==============================================================*/
-/* Table: entrenamiento                                         */
-/*==============================================================*/
-create table entrenamiento (
-   id                   varchar(5)           not null,
-   nombre               varchar(25)          not null,
-   procedimiento_id     varchar(5)           not null,
-   tipo_entrenamiento_id varchar(2)           not null,
-   descripcion          varchar(100)         null,
-   url_video            varchar(200)         null,
-   estado               numeric(1)           null default 1,
-   constraint pk_entrenamiento primary key (id)
-);
-
-comment on table entrenamiento is
-'entrenamiento';
-
-comment on column entrenamiento.id is
-'id';
-
-comment on column entrenamiento.nombre is
-'nombre';
-
-comment on column entrenamiento.procedimiento_id is
-'procedimiento_id';
-
-comment on column entrenamiento.tipo_entrenamiento_id is
-'tipo_entrenamiento_id';
-
-comment on column entrenamiento.descripcion is
-'descripcion';
-
-comment on column entrenamiento.url_video is
-'url_video';
-
-comment on column entrenamiento.estado is
-'estado';
-
-/*==============================================================*/
-/* Table: entrenamiento_actividad                               */
-/*==============================================================*/
-create table entrenamiento_actividad (
-   id                   numeric(4)           not null default nextval('entrenamiento_actividad_seq'),
-   entrenamiento_id     varchar(5)           not null,
-   tipo_actividad_id    varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   descripcion          varchar(100)         null,
-   url_video            varchar(200)         null,
-   series               numeric(10)          null,
-   cantidad             numeric(10)          null,
-   min_descanso         time                 null,
-   tiempo_estimado      time                 null,
-   tiempo_marca         time                 null,
-   orden                numeric(2)           null,
-   ubicacion            numeric(1)           null default 1,
-   estado               numeric(1)           null default 1,
-   constraint pk_entrenamiento_actividad primary key (id)
-);
-
-comment on table entrenamiento_actividad is
-'entrenamiento_actividad';
-
-comment on column entrenamiento_actividad.id is
-'id';
-
-comment on column entrenamiento_actividad.entrenamiento_id is
-'entrenamiento_id';
-
-comment on column entrenamiento_actividad.tipo_actividad_id is
-'tipo_actividad_id';
-
-comment on column entrenamiento_actividad.nombre is
-'nombre';
-
-comment on column entrenamiento_actividad.descripcion is
-'descripcion';
-
-comment on column entrenamiento_actividad.url_video is
-'url_video';
-
-comment on column entrenamiento_actividad.series is
-'series';
-
-comment on column entrenamiento_actividad.cantidad is
-'cantidad';
-
-comment on column entrenamiento_actividad.min_descanso is
-'min_descanso';
-
-comment on column entrenamiento_actividad.tiempo_estimado is
-'tiempo_estimado';
-
-comment on column entrenamiento_actividad.tiempo_marca is
-'tiempo_marca';
-
-comment on column entrenamiento_actividad.orden is
-'orden';
-
-comment on column entrenamiento_actividad.ubicacion is
-'ubicacion';
-
-comment on column entrenamiento_actividad.estado is
-'estado';
-
-/*==============================================================*/
-/* Table: entrenamiento_plan                                    */
-/*==============================================================*/
-create table entrenamiento_plan (
-   id                   numeric(15)          not null default nextval('entrenamiento_plan_seq'),
-   entrenamiento_id     varchar(5)           not null,
-   entrenador_id        numeric(10)          not null,
-   atleta_id            numeric(10)          not null,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   estado               numeric(1)           null default 1,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_entrenamiento_plan primary key (id)
-);
-
-comment on table entrenamiento_plan is
-'entrenamiento_plan';
-
-comment on column entrenamiento_plan.id is
-'id';
-
-comment on column entrenamiento_plan.entrenamiento_id is
-'entrenamiento_id';
-
-comment on column entrenamiento_plan.entrenador_id is
-'entrenador_id';
-
-comment on column entrenamiento_plan.atleta_id is
-'atleta_id';
-
-comment on column entrenamiento_plan.fecha_registro is
-'fecha_registro';
-
-comment on column entrenamiento_plan.fecha_actualizacion is
-'fecha_actualizacion';
-
-comment on column entrenamiento_plan.estado is
-'estado';
-
-comment on column entrenamiento_plan.usuario_id is
-'usuario_id';
-
-comment on column entrenamiento_plan.ip_address is
-'ip_address';
-
-/*==============================================================*/
-/* Table: entrenamiento_seguimiento                             */
-/*==============================================================*/
-create table entrenamiento_seguimiento (
-   id                   numeric(20)          not null default nextval('entrenamiento_seguimiento_seq'),
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   entrenamiento_plan_id numeric(15)          not null,
-   entrenamiento_actividad_id numeric(4)           not null,
-   latitud              decimal              null,
-   longitud             decimal              null,
-   respuesta            varchar(100)         null,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_entrenamiento_seguimiento primary key (id)
-);
-
-comment on table entrenamiento_seguimiento is
-'entrenamiento_seguimiento';
-
-comment on column entrenamiento_seguimiento.id is
-'id';
-
-comment on column entrenamiento_seguimiento.fecha_registro is
-'fecha_registro';
-
-comment on column entrenamiento_seguimiento.entrenamiento_plan_id is
+comment on column CHAT_ENTRENAMIENTO_PLAN.ENTRENAMIENTO_PLAN_ID is
 'entrenamiento_plan_id';
 
-comment on column entrenamiento_seguimiento.entrenamiento_actividad_id is
-'entrenamiento_actividad_id';
-
-comment on column entrenamiento_seguimiento.latitud is
-'latitud';
-
-comment on column entrenamiento_seguimiento.longitud is
-'longitud';
-
-comment on column entrenamiento_seguimiento.respuesta is
-'respuesta';
-
-comment on column entrenamiento_seguimiento.usuario_id is
-'usuario_id';
-
-comment on column entrenamiento_seguimiento.ip_address is
-'ip_address';
-
 /*==============================================================*/
-/* Table: factura                                               */
+/* Table: CHAT_ESTADO                                           */
 /*==============================================================*/
-create table factura (
-   id                   numeric(15)          not null default nextval('factura_seq'),
-   fecha                date                 not null default current_date,
-   resolucion_sec_id    numeric(5)           not null,
-   punto_venta_id       varchar(5)           not null,
-   cliente_persona_id   numeric(10)          not null,
-   moneda_id            varchar(3)           not null,
-   valor_total          numeric(15,2)        not null default 0,
-   factura_estado_id    varchar(5)           null,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_factura primary key (id)
+create table CHAT_ESTADO (
+   ID                   VARCHAR(20)          not null,
+   NOMBRE               VARCHAR(30)          not null,
+   SIGUIENTE            VARCHAR(20)          not null,
+   ANTERIOR             VARCHAR(20)          not null,
+   SALIDA               VARCHAR(20)          not null,
+   constraint PK_CHAT_ESTADO primary key (ID)
 );
 
-comment on table factura is
-'factura';
+comment on table CHAT_ESTADO is
+'chat_estado';
 
-comment on column factura.id is
+comment on column CHAT_ESTADO.ID is
 'id';
 
-comment on column factura.fecha is
-'fecha';
+comment on column CHAT_ESTADO.NOMBRE is
+'nombre';
 
-comment on column factura.resolucion_sec_id is
-'resolucion_sec_id';
-
-comment on column factura.punto_venta_id is
-'punto_venta_id';
-
-comment on column factura.cliente_persona_id is
-'cliente_persona_id';
-
-comment on column factura.moneda_id is
-'moneda_id';
-
-comment on column factura.valor_total is
-'valor_total';
-
-comment on column factura.factura_estado_id is
-'factura_estado_id';
-
-comment on column factura.fecha_registro is
-'fecha_registro';
-
-comment on column factura.fecha_actualizacion is
-'fecha_actualizacion';
-
-comment on column factura.usuario_id is
-'usuario_id';
-
-comment on column factura.ip_address is
-'ip_address';
-
-/*==============================================================*/
-/* Table: factura_detalle                                       */
-/*==============================================================*/
-create table factura_detalle (
-   id                   numeric(20)          not null default nextval('factura_detalle_seq'),
-   factura_id           numeric(15)          not null,
-   producto_servicio_id varchar(6)           not null,
-   descuento_porcentaje numeric(5,2)         null default 0
-      constraint ckc_descuento_porcent_factura_ check (descuento_porcentaje is null or (descuento_porcentaje between 0 and 100)),
-   valor_neto           numeric(15,2)        not null default 0,
-   valor_total          numeric(15,2)        not null default 0,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_factura_detalle primary key (id)
-);
-
-comment on table factura_detalle is
-'factura_detalle';
-
-comment on column factura_detalle.id is
-'id';
-
-comment on column factura_detalle.factura_id is
-'factura_id';
-
-comment on column factura_detalle.producto_servicio_id is
-'producto_servicio_id';
-
-comment on column factura_detalle.descuento_porcentaje is
-'descuento_porcentaje';
-
-comment on column factura_detalle.valor_neto is
-'valor_neto';
-
-comment on column factura_detalle.valor_total is
-'valor_total';
-
-comment on column factura_detalle.estado is
-'estado';
-
-comment on column factura_detalle.fecha_registro is
-'fecha_registro';
-
-comment on column factura_detalle.fecha_actualizacion is
-'fecha_actualizacion';
-
-comment on column factura_detalle.usuario_id is
-'usuario_id';
-
-comment on column factura_detalle.ip_address is
-'ip_address';
-
-/*==============================================================*/
-/* Table: factura_estado                                        */
-/*==============================================================*/
-create table factura_estado (
-   id                   varchar(5)           not null,
-   siguiente            varchar(5)           null,
-   previo               varchar(5)           null,
-   inicial              numeric(1)           null default 0
-      constraint ckc_inicial_factura_ check (inicial is null or (inicial between 0 and 1)),
-   final                numeric(1)           null default 0
-      constraint ckc_final_factura_ check (final is null or (final between 0 and 1)),
-   constraint pk_factura_estado primary key (id)
-);
-
-comment on table factura_estado is
-'factura_estado';
-
-comment on column factura_estado.id is
-'id';
-
-comment on column factura_estado.siguiente is
+comment on column CHAT_ESTADO.SIGUIENTE is
 'siguiente';
 
-comment on column factura_estado.previo is
+comment on column CHAT_ESTADO.ANTERIOR is
+'anterior';
+
+comment on column CHAT_ESTADO.SALIDA is
+'salida';
+
+/*==============================================================*/
+/* Table: CHAT_MENSAJE                                          */
+/*==============================================================*/
+create table CHAT_MENSAJE (
+   ID                   NUMERIC(20)          not null default NEXTVAL('chat_multimedia'),
+   CHAT_CONVERSACION_ID NUMERIC(20)          not null,
+   FECHA_HORA           TIMESTAMP WITH TIME ZONE not null,
+   MENSAJE              VARCHAR(500)         not null,
+   ORIENTACION          VARCHAR(7)           null default 'ENTRADA'
+      constraint CKC_ORIENTACION_CHAT_MEN check (ORIENTACION is null or (ORIENTACION in ('ENTRADA','SALIDA') and ORIENTACION = upper(ORIENTACION))),
+   constraint PK_CHAT_MENSAJE primary key (ID)
+);
+
+comment on table CHAT_MENSAJE is
+'chat_mensaje';
+
+comment on column CHAT_MENSAJE.ID is
+'id';
+
+comment on column CHAT_MENSAJE.CHAT_CONVERSACION_ID is
+'chat_conversacion_id';
+
+comment on column CHAT_MENSAJE.FECHA_HORA is
+'fecha_hora';
+
+comment on column CHAT_MENSAJE.MENSAJE is
+'mensaje';
+
+comment on column CHAT_MENSAJE.ORIENTACION is
+'orientacion';
+
+/*==============================================================*/
+/* Table: CHAT_MENSAJE_MEDIA                                    */
+/*==============================================================*/
+create table CHAT_MENSAJE_MEDIA (
+   ID                   NUMERIC(20)          not null default NEXTVAL('chat_multimedia'),
+   CHAT_MENSAJE_ID      NUMERIC(20)          not null,
+   FECHA_HORA           TIMESTAMP WITH TIME ZONE not null,
+   NOMBRE               VARCHAR(100)         null,
+   STORAGE_URL          VARCHAR(500)         null,
+   STORAGE_PATH         VARCHAR(500)         null,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   ESTADO               NUMERIC(1)           null default 1,
+   constraint PK_CHAT_MENSAJE_MEDIA primary key (ID)
+);
+
+comment on table CHAT_MENSAJE_MEDIA is
+'chat_mensaje_media';
+
+comment on column CHAT_MENSAJE_MEDIA.ID is
+'id';
+
+comment on column CHAT_MENSAJE_MEDIA.CHAT_MENSAJE_ID is
+'chat_mensaje_id';
+
+comment on column CHAT_MENSAJE_MEDIA.FECHA_HORA is
+'fecha_hora';
+
+comment on column CHAT_MENSAJE_MEDIA.NOMBRE is
+'nombre';
+
+comment on column CHAT_MENSAJE_MEDIA.STORAGE_URL is
+'storage_url';
+
+comment on column CHAT_MENSAJE_MEDIA.STORAGE_PATH is
+'storage_path';
+
+comment on column CHAT_MENSAJE_MEDIA.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column CHAT_MENSAJE_MEDIA.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column CHAT_MENSAJE_MEDIA.ESTADO is
+'estado';
+
+/*==============================================================*/
+/* Table: CIUDAD                                                */
+/*==============================================================*/
+create table CIUDAD (
+   ID                   VARCHAR(5)           not null,
+   NOMBRE               VARCHAR(30)          not null,
+   DEPTO_ID             VARCHAR(2)           not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_CIUDAD primary key (ID)
+);
+
+comment on table CIUDAD is
+'ciudad';
+
+comment on column CIUDAD.ID is
+'id';
+
+comment on column CIUDAD.NOMBRE is
+'nombre';
+
+comment on column CIUDAD.DEPTO_ID is
+'depto_id';
+
+comment on column CIUDAD.ESTADO is
+'estado';
+
+comment on column CIUDAD.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column CIUDAD.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column CIUDAD.USUARIO_ID is
+'usuario_id';
+
+comment on column CIUDAD.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: CONTINENTE                                            */
+/*==============================================================*/
+create table CONTINENTE (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   constraint PK_CONTINENTE primary key (ID)
+);
+
+comment on table CONTINENTE is
+'continente';
+
+comment on column CONTINENTE.ID is
+'id';
+
+comment on column CONTINENTE.NOMBRE is
+'nombre';
+
+comment on column CONTINENTE.DESCRIPCION is
+'descripcion';
+
+/*==============================================================*/
+/* Table: CUPON                                                 */
+/*==============================================================*/
+create table CUPON (
+   ID                   VARCHAR(5)           not null,
+   TIPO_CUPON_ID        VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(20)          not null,
+   DESCUENTO_PORCENTAJE NUMERIC(5,2)         null default 0
+      constraint CKC_DESCUENTO_PORCENT_CUPON check (DESCUENTO_PORCENTAJE is null or (DESCUENTO_PORCENTAJE between 0 and 100)),
+   MONEDA_ID            VARCHAR(3)           not null,
+   VALOR                NUMERIC(15,2)        null default 0,
+   VALOR_TOPE           NUMERIC(15,2)        null default 0,
+   APLICA_TOPE          NUMERIC(1)           null default 0
+      constraint CKC_APLICA_TOPE_CUPON check (APLICA_TOPE is null or (APLICA_TOPE between 0 and 1)),
+   VIGENTE_DESDE        DATE                 null default CURRENT_DATE,
+   VIGENTE_HASTA        DATE                 null default CURRENT_DATE,
+   ESTADO               NUMERIC(1)           null default 1,
+   constraint PK_CUPON primary key (ID)
+);
+
+comment on table CUPON is
+'cupon';
+
+comment on column CUPON.ID is
+'id';
+
+comment on column CUPON.TIPO_CUPON_ID is
+'tipo_cupon_id';
+
+comment on column CUPON.NOMBRE is
+'nombre';
+
+comment on column CUPON.DESCUENTO_PORCENTAJE is
+'descuento_porcentaje';
+
+comment on column CUPON.MONEDA_ID is
+'moneda_id';
+
+comment on column CUPON.VALOR is
+'valor';
+
+comment on column CUPON.VALOR_TOPE is
+'valor_tope';
+
+comment on column CUPON.APLICA_TOPE is
+'aplica_tope';
+
+comment on column CUPON.VIGENTE_DESDE is
+'vigente_desde';
+
+comment on column CUPON.VIGENTE_HASTA is
+'vigente_hasta';
+
+comment on column CUPON.ESTADO is
+'estado';
+
+/*==============================================================*/
+/* Table: DEPTO                                                 */
+/*==============================================================*/
+create table DEPTO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(30)          not null,
+   PAIS_ID              VARCHAR(3)           not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_DEPTO primary key (ID)
+);
+
+comment on table DEPTO is
+'depto';
+
+comment on column DEPTO.ID is
+'id';
+
+comment on column DEPTO.NOMBRE is
+'nombre';
+
+comment on column DEPTO.PAIS_ID is
+'pais_id';
+
+comment on column DEPTO.ESTADO is
+'estado';
+
+comment on column DEPTO.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column DEPTO.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column DEPTO.USUARIO_ID is
+'usuario_id';
+
+comment on column DEPTO.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: DIAGNOSTICO_CIE10                                     */
+/*==============================================================*/
+create table DIAGNOSTICO_CIE10 (
+   ID                   VARCHAR(4)           not null,
+   NOMBRE               VARCHAR(100)         not null,
+   DESCRIPCION          VARCHAR(200)         null,
+   constraint PK_DIAGNOSTICO_CIE10 primary key (ID)
+);
+
+comment on table DIAGNOSTICO_CIE10 is
+'diagnostico_cie10';
+
+comment on column DIAGNOSTICO_CIE10.ID is
+'id';
+
+comment on column DIAGNOSTICO_CIE10.NOMBRE is
+'nombre';
+
+comment on column DIAGNOSTICO_CIE10.DESCRIPCION is
+'descripcion';
+
+/*==============================================================*/
+/* Table: ENTRENAMIENTO                                         */
+/*==============================================================*/
+create table ENTRENAMIENTO (
+   ID                   VARCHAR(5)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   PROCEDIMIENTO_ID     VARCHAR(5)           not null,
+   TIPO_ENTRENAMIENTO_ID VARCHAR(2)           not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   URL_WIKI             VARCHAR(100)         null,
+   URL_YOUTUBE          VARCHAR(100)         null,
+   URL_ORGANIZACION     VARCHAR(100)         null,
+   ESTADO               NUMERIC(1)           null default 1,
+   constraint PK_ENTRENAMIENTO primary key (ID)
+);
+
+comment on table ENTRENAMIENTO is
+'entrenamiento';
+
+comment on column ENTRENAMIENTO.ID is
+'id';
+
+comment on column ENTRENAMIENTO.NOMBRE is
+'nombre';
+
+comment on column ENTRENAMIENTO.PROCEDIMIENTO_ID is
+'procedimiento_id';
+
+comment on column ENTRENAMIENTO.TIPO_ENTRENAMIENTO_ID is
+'tipo_entrenamiento_id';
+
+comment on column ENTRENAMIENTO.DESCRIPCION is
+'descripcion';
+
+comment on column ENTRENAMIENTO.URL_WIKI is
+'url_wiki';
+
+comment on column ENTRENAMIENTO.URL_YOUTUBE is
+'url_youtube';
+
+comment on column ENTRENAMIENTO.URL_ORGANIZACION is
+'url_organizacion';
+
+comment on column ENTRENAMIENTO.ESTADO is
+'estado';
+
+/*==============================================================*/
+/* Table: ENTRENAMIENTO_ACTIVIDAD                               */
+/*==============================================================*/
+create table ENTRENAMIENTO_ACTIVIDAD (
+   ID                   NUMERIC(4)           not null default NEXTVAL('entrenamiento_actividad_seq'),
+   ENTRENAMIENTO_ID     VARCHAR(5)           not null,
+   TIPO_ACTIVIDAD_ID    VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   URL_VIDEO            VARCHAR(200)         null,
+   SERIES               NUMERIC(10)          null,
+   CANTIDAD             NUMERIC(10)          null,
+   MIN_DESCANSO         TIME                 null,
+   TIEMPO_ESTIMADO      TIME                 null,
+   TIEMPO_MARCA         TIME                 null,
+   ORDEN                NUMERIC(2)           null,
+   UBICACION            NUMERIC(1)           null default 1,
+   ESTADO               NUMERIC(1)           null default 1,
+   constraint PK_ENTRENAMIENTO_ACTIVIDAD primary key (ID)
+);
+
+comment on table ENTRENAMIENTO_ACTIVIDAD is
+'entrenamiento_actividad';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.ID is
+'id';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.ENTRENAMIENTO_ID is
+'entrenamiento_id';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.TIPO_ACTIVIDAD_ID is
+'tipo_actividad_id';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.NOMBRE is
+'nombre';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.DESCRIPCION is
+'descripcion';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.URL_VIDEO is
+'url_video';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.SERIES is
+'series';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.CANTIDAD is
+'cantidad';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.MIN_DESCANSO is
+'min_descanso';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.TIEMPO_ESTIMADO is
+'tiempo_estimado';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.TIEMPO_MARCA is
+'tiempo_marca';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.ORDEN is
+'orden';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.UBICACION is
+'ubicacion';
+
+comment on column ENTRENAMIENTO_ACTIVIDAD.ESTADO is
+'estado';
+
+/*==============================================================*/
+/* Table: ENTRENAMIENTO_PLAN                                    */
+/*==============================================================*/
+create table ENTRENAMIENTO_PLAN (
+   ID                   NUMERIC(15)          not null default nextval('entrenamiento_plan_seq'),
+   ENTRENAMIENTO_ID     VARCHAR(5)           not null,
+   ENTRENADOR_ID        NUMERIC(10)          not null,
+   ATLETA_ID            NUMERIC(10)          not null,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   ESTADO               NUMERIC(1)           null default 1,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_ENTRENAMIENTO_PLAN primary key (ID)
+);
+
+comment on table ENTRENAMIENTO_PLAN is
+'entrenamiento_plan';
+
+comment on column ENTRENAMIENTO_PLAN.ID is
+'id';
+
+comment on column ENTRENAMIENTO_PLAN.ENTRENAMIENTO_ID is
+'entrenamiento_id';
+
+comment on column ENTRENAMIENTO_PLAN.ENTRENADOR_ID is
+'entrenador_id';
+
+comment on column ENTRENAMIENTO_PLAN.ATLETA_ID is
+'atleta_id';
+
+comment on column ENTRENAMIENTO_PLAN.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column ENTRENAMIENTO_PLAN.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column ENTRENAMIENTO_PLAN.ESTADO is
+'estado';
+
+comment on column ENTRENAMIENTO_PLAN.USUARIO_ID is
+'usuario_id';
+
+comment on column ENTRENAMIENTO_PLAN.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: ENTRENAMIENTO_SEGUIMIENTO                             */
+/*==============================================================*/
+create table ENTRENAMIENTO_SEGUIMIENTO (
+   ID                   NUMERIC(20)          not null default nextval('entrenamiento_seguimiento_seq'),
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   ENTRENAMIENTO_PLAN_ID NUMERIC(15)          not null,
+   ENTRENAMIENTO_ACTIVIDAD_ID NUMERIC(4)           not null,
+   LATITUD              DECIMAL              null,
+   LONGITUD             DECIMAL              null,
+   RESPUESTA            VARCHAR(100)         null,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_ENTRENAMIENTO_SEGUIMIENTO primary key (ID)
+);
+
+comment on table ENTRENAMIENTO_SEGUIMIENTO is
+'entrenamiento_seguimiento';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.ID is
+'id';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.ENTRENAMIENTO_PLAN_ID is
+'entrenamiento_plan_id';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.ENTRENAMIENTO_ACTIVIDAD_ID is
+'entrenamiento_actividad_id';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.LATITUD is
+'latitud';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.LONGITUD is
+'longitud';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.RESPUESTA is
+'respuesta';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.USUARIO_ID is
+'usuario_id';
+
+comment on column ENTRENAMIENTO_SEGUIMIENTO.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: EVENTO                                                */
+/*==============================================================*/
+create table EVENTO (
+   ID                   NUMERIC(10)          not null default nextval('evento_seq'),
+   TIPO_EVENTO_ID       VARCHAR(2)           not null,
+   TIPO_ACCESO_ID       VARCHAR(2)           not null,
+   FECHA_INICIO         TIMESTAMP WITH TIME ZONE not null,
+   FECHA_FIN            TIMESTAMP WITH TIME ZONE not null,
+   NOMBRE               VARCHAR(25)          not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   CIUDAD_ID            VARCHAR(5)           not null,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   ESTADO               NUMERIC(1)           null default 1,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_EVENTO primary key (ID)
+);
+
+comment on table EVENTO is
+'evento';
+
+comment on column EVENTO.ID is
+'id';
+
+comment on column EVENTO.TIPO_EVENTO_ID is
+'tipo_evento_id';
+
+comment on column EVENTO.TIPO_ACCESO_ID is
+'tipo_acceso_id';
+
+comment on column EVENTO.FECHA_INICIO is
+'fecha_inicio';
+
+comment on column EVENTO.FECHA_FIN is
+'fecha_fin';
+
+comment on column EVENTO.NOMBRE is
+'nombre';
+
+comment on column EVENTO.DESCRIPCION is
+'descripcion';
+
+comment on column EVENTO.CIUDAD_ID is
+'ciudad_id';
+
+comment on column EVENTO.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column EVENTO.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column EVENTO.ESTADO is
+'estado';
+
+comment on column EVENTO.USUARIO_ID is
+'usuario_id';
+
+comment on column EVENTO.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: EVENTO_PARTICIPANTES                                  */
+/*==============================================================*/
+create table EVENTO_PARTICIPANTES (
+   ID                   NUMERIC(10)          not null default nextval('evento_participantes_seq'),
+   EVENTO_ID            NUMERIC(10)          not null,
+   PERSONA_ID           NUMERIC(10)          not null default NEXTVAL('persona_seq'),
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   constraint PK_EVENTO_PARTICIPANTES primary key (ID)
+);
+
+comment on table EVENTO_PARTICIPANTES is
+'evento_participantes';
+
+comment on column EVENTO_PARTICIPANTES.ID is
+'id';
+
+comment on column EVENTO_PARTICIPANTES.EVENTO_ID is
+'evento_id';
+
+comment on column EVENTO_PARTICIPANTES.PERSONA_ID is
+'persona_id';
+
+comment on column EVENTO_PARTICIPANTES.FECHA_REGISTRO is
+'fecha_asistencia';
+
+/*==============================================================*/
+/* Table: FACTURA                                               */
+/*==============================================================*/
+create table FACTURA (
+   ID                   NUMERIC(15)          not null default NEXTVAL('factura_seq'),
+   FECHA                DATE                 not null default CURRENT_DATE,
+   RESOLUCION_SEC_ID    NUMERIC(5)           not null,
+   PUNTO_VENTA_ID       VARCHAR(5)           not null,
+   CLIENTE_PERSONA_ID   NUMERIC(10)          not null,
+   MONEDA_ID            VARCHAR(3)           not null,
+   VALOR_TOTAL          NUMERIC(15,2)        not null default 0,
+   FACTURA_ESTADO_ID    VARCHAR(5)           null,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_FACTURA primary key (ID)
+);
+
+comment on table FACTURA is
+'factura';
+
+comment on column FACTURA.ID is
+'id';
+
+comment on column FACTURA.FECHA is
+'fecha';
+
+comment on column FACTURA.RESOLUCION_SEC_ID is
+'resolucion_sec_id';
+
+comment on column FACTURA.PUNTO_VENTA_ID is
+'punto_venta_id';
+
+comment on column FACTURA.CLIENTE_PERSONA_ID is
+'cliente_persona_id';
+
+comment on column FACTURA.MONEDA_ID is
+'moneda_id';
+
+comment on column FACTURA.VALOR_TOTAL is
+'valor_total';
+
+comment on column FACTURA.FACTURA_ESTADO_ID is
+'factura_estado_id';
+
+comment on column FACTURA.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column FACTURA.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column FACTURA.USUARIO_ID is
+'usuario_id';
+
+comment on column FACTURA.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: FACTURA_DETALLE                                       */
+/*==============================================================*/
+create table FACTURA_DETALLE (
+   ID                   NUMERIC(20)          not null default NEXTVAL('factura_detalle_seq'),
+   FACTURA_ID           NUMERIC(15)          not null,
+   PRODUCTO_SERVICIO_ID VARCHAR(6)           not null,
+   DESCUENTO_PORCENTAJE NUMERIC(5,2)         null default 0
+      constraint CKC_DESCUENTO_PORCENT_FACTURA_ check (DESCUENTO_PORCENTAJE is null or (DESCUENTO_PORCENTAJE between 0 and 100)),
+   VALOR_NETO           NUMERIC(15,2)        not null default 0,
+   VALOR_TOTAL          NUMERIC(15,2)        not null default 0,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_FACTURA_DETALLE primary key (ID)
+);
+
+comment on table FACTURA_DETALLE is
+'factura_detalle';
+
+comment on column FACTURA_DETALLE.ID is
+'id';
+
+comment on column FACTURA_DETALLE.FACTURA_ID is
+'factura_id';
+
+comment on column FACTURA_DETALLE.PRODUCTO_SERVICIO_ID is
+'producto_servicio_id';
+
+comment on column FACTURA_DETALLE.DESCUENTO_PORCENTAJE is
+'descuento_porcentaje';
+
+comment on column FACTURA_DETALLE.VALOR_NETO is
+'valor_neto';
+
+comment on column FACTURA_DETALLE.VALOR_TOTAL is
+'valor_total';
+
+comment on column FACTURA_DETALLE.ESTADO is
+'estado';
+
+comment on column FACTURA_DETALLE.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column FACTURA_DETALLE.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column FACTURA_DETALLE.USUARIO_ID is
+'usuario_id';
+
+comment on column FACTURA_DETALLE.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: FACTURA_ESTADO                                        */
+/*==============================================================*/
+create table FACTURA_ESTADO (
+   ID                   VARCHAR(5)           not null,
+   SIGUIENTE            VARCHAR(5)           null,
+   PREVIO               VARCHAR(5)           null,
+   INICIAL              NUMERIC(1)           null default 0
+      constraint CKC_INICIAL_FACTURA_ check (INICIAL is null or (INICIAL between 0 and 1)),
+   FINAL                NUMERIC(1)           null default 0
+      constraint CKC_FINAL_FACTURA_ check (FINAL is null or (FINAL between 0 and 1)),
+   constraint PK_FACTURA_ESTADO primary key (ID)
+);
+
+comment on table FACTURA_ESTADO is
+'factura_estado';
+
+comment on column FACTURA_ESTADO.ID is
+'id';
+
+comment on column FACTURA_ESTADO.SIGUIENTE is
+'siguiente';
+
+comment on column FACTURA_ESTADO.PREVIO is
 'previo';
 
-comment on column factura_estado.inicial is
+comment on column FACTURA_ESTADO.INICIAL is
 'inicial';
 
-comment on column factura_estado.final is
+comment on column FACTURA_ESTADO.FINAL is
 'final';
 
 /*==============================================================*/
-/* Table: membresia                                             */
+/* Table: HISTORIA                                              */
 /*==============================================================*/
-create table membresia (
-   id                   varchar(3)           not null,
-   nombre               varchar(20)          not null,
-   descripcion          varchar(100)         not null,
-   vigente_desde        date                 not null,
-   vigente_hasta        date                 null,
-   constraint pk_membresia primary key (id)
+create table HISTORIA (
+   ID                   NUMERIC(15)          not null default NEXTVAL('historia_medica_seq'),
+   FECHA                DATE                 not null default CURRENT_DATE,
+   PACIENTE_PERSONA_ID  NUMERIC(10)          not null,
+   MEDICO_PERSONA_ID    NUMERIC(10)          null,
+   REGISTRO_MEDICO      VARCHAR(20)          null,
+   HISTORIA_ESTADO_ID   VARCHAR(5)           null,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_HISTORIA primary key (ID)
 );
 
-comment on table membresia is
-'membresia';
+comment on table HISTORIA is
+'historia';
 
-comment on column membresia.id is
+comment on column HISTORIA.ID is
 'id';
 
-comment on column membresia.nombre is
-'nombre';
+comment on column HISTORIA.FECHA is
+'fecha';
 
-comment on column membresia.descripcion is
-'descripcion';
+comment on column HISTORIA.PACIENTE_PERSONA_ID is
+'paciente_persona_id';
 
-comment on column membresia.vigente_desde is
-'vigente_desde';
+comment on column HISTORIA.MEDICO_PERSONA_ID is
+'medico_persona_id';
 
-comment on column membresia.vigente_hasta is
-'vigente_hasta';
+comment on column HISTORIA.REGISTRO_MEDICO is
+'registro_medico';
 
-/*==============================================================*/
-/* Table: membresia_servicios                                   */
-/*==============================================================*/
-create table membresia_servicios (
-   id                   numeric(5)           not null default nextval('membresia_servicios_seq'),
-   membresia_id         varchar(3)           not null,
-   servicio_id          varchar(3)           not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_membresia_servicios primary key (id)
-);
+comment on column HISTORIA.HISTORIA_ESTADO_ID is
+'historia_estado_id';
 
-comment on table membresia_servicios is
-'membresia_servicios';
-
-comment on column membresia_servicios.id is
-'id';
-
-comment on column membresia_servicios.membresia_id is
-'membresia_id';
-
-comment on column membresia_servicios.servicio_id is
-'servicio_id';
-
-comment on column membresia_servicios.estado is
-'estado';
-
-comment on column membresia_servicios.fecha_registro is
+comment on column HISTORIA.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column membresia_servicios.fecha_actualizacion is
+comment on column HISTORIA.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column membresia_servicios.usuario_id is
+comment on column HISTORIA.USUARIO_ID is
 'usuario_id';
 
-comment on column membresia_servicios.ip_address is
+comment on column HISTORIA.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: moneda                                                */
+/* Table: HISTORIA_DIAGNOSTICOS                                 */
 /*==============================================================*/
-create table moneda (
-   id                   varchar(3)           not null,
-   nombre               varchar(30)          not null,
-   simbolo              varchar(6)           not null,
-   constraint pk_moneda primary key (id)
+create table HISTORIA_DIAGNOSTICOS (
+   ID                   NUMERIC(20)          not null default NEXTVAL('factura_detalle_seq'),
+   HISTORIA_ID          NUMERIC(15)          not null,
+   DIAGNOSTICO_ID       VARCHAR(4)           not null,
+   NOTA_MEDICA          VARCHAR(200)         null,
+   PROFESIONAL_SALUD    VARCHAR(50)          null default '0'
+      constraint CKC_PROFESIONAL_SALUD_HISTORIA check (PROFESIONAL_SALUD is null or (PROFESIONAL_SALUD between '0' and '100')),
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_HISTORIA_DIAGNOSTICOS primary key (ID)
 );
 
-comment on table moneda is
-'moneda';
+comment on table HISTORIA_DIAGNOSTICOS is
+'historia_diagnosticos';
 
-comment on column moneda.id is
+comment on column HISTORIA_DIAGNOSTICOS.ID is
 'id';
 
-comment on column moneda.nombre is
+comment on column HISTORIA_DIAGNOSTICOS.HISTORIA_ID is
+'historia_id';
+
+comment on column HISTORIA_DIAGNOSTICOS.DIAGNOSTICO_ID is
+'diagnostico_id';
+
+comment on column HISTORIA_DIAGNOSTICOS.NOTA_MEDICA is
+'nota_medica';
+
+comment on column HISTORIA_DIAGNOSTICOS.PROFESIONAL_SALUD is
+'profesional_salud';
+
+comment on column HISTORIA_DIAGNOSTICOS.ESTADO is
+'estado';
+
+comment on column HISTORIA_DIAGNOSTICOS.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column HISTORIA_DIAGNOSTICOS.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column HISTORIA_DIAGNOSTICOS.USUARIO_ID is
+'usuario_id';
+
+comment on column HISTORIA_DIAGNOSTICOS.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: HISTORIA_ESTADO                                       */
+/*==============================================================*/
+create table HISTORIA_ESTADO (
+   ID                   VARCHAR(5)           not null,
+   SIGUIENTE            VARCHAR(5)           null,
+   PREVIO               VARCHAR(5)           null,
+   INICIAL              NUMERIC(1)           null default 0
+      constraint CKC_INICIAL_HISTORIA check (INICIAL is null or (INICIAL between 0 and 1)),
+   FINAL                NUMERIC(1)           null default 0
+      constraint CKC_FINAL_HISTORIA check (FINAL is null or (FINAL between 0 and 1)),
+   constraint PK_HISTORIA_ESTADO primary key (ID)
+);
+
+comment on table HISTORIA_ESTADO is
+'historia_estado';
+
+comment on column HISTORIA_ESTADO.ID is
+'id';
+
+comment on column HISTORIA_ESTADO.SIGUIENTE is
+'siguiente';
+
+comment on column HISTORIA_ESTADO.PREVIO is
+'previo';
+
+comment on column HISTORIA_ESTADO.INICIAL is
+'inicial';
+
+comment on column HISTORIA_ESTADO.FINAL is
+'final';
+
+/*==============================================================*/
+/* Table: HISTORIA_NOTAS                                        */
+/*==============================================================*/
+create table HISTORIA_NOTAS (
+   ID                   NUMERIC(20)          not null default NEXTVAL('factura_detalle_seq'),
+   HISTORIA_ID          NUMERIC(15)          not null,
+   NOTA_MEDICA          VARCHAR(200)         not null,
+   PROFESIONAL_SALUD    VARCHAR(50)          null default '0'
+      constraint CKC_PROFESIONAL_SALUD_HISTORIA check (PROFESIONAL_SALUD is null or (PROFESIONAL_SALUD between '0' and '100')),
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_HISTORIA_NOTAS primary key (ID)
+);
+
+comment on table HISTORIA_NOTAS is
+'historia_notas';
+
+comment on column HISTORIA_NOTAS.ID is
+'id';
+
+comment on column HISTORIA_NOTAS.HISTORIA_ID is
+'historia_id';
+
+comment on column HISTORIA_NOTAS.NOTA_MEDICA is
+'nota_medica';
+
+comment on column HISTORIA_NOTAS.PROFESIONAL_SALUD is
+'profesional_salud';
+
+comment on column HISTORIA_NOTAS.ESTADO is
+'estado';
+
+comment on column HISTORIA_NOTAS.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column HISTORIA_NOTAS.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column HISTORIA_NOTAS.USUARIO_ID is
+'usuario_id';
+
+comment on column HISTORIA_NOTAS.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: HISTORIA_TRATAMIENTOS                                 */
+/*==============================================================*/
+create table HISTORIA_TRATAMIENTOS (
+   ID                   NUMERIC(20)          not null default NEXTVAL('factura_detalle_seq'),
+   HISTORIA_ID          NUMERIC(15)          not null,
+   PROCEDIMIENTO_CUPS_ID VARCHAR(6)           not null,
+   NOTA_MEDICA          VARCHAR(200)         null,
+   PROFESIONAL_SALUD    VARCHAR(50)          null default '0'
+      constraint CKC_PROFESIONAL_SALUD_HISTORIA check (PROFESIONAL_SALUD is null or (PROFESIONAL_SALUD between '0' and '100')),
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_HISTORIA_TRATAMIENTOS primary key (ID)
+);
+
+comment on table HISTORIA_TRATAMIENTOS is
+'historia_tratamientos';
+
+comment on column HISTORIA_TRATAMIENTOS.ID is
+'id';
+
+comment on column HISTORIA_TRATAMIENTOS.HISTORIA_ID is
+'historia_id';
+
+comment on column HISTORIA_TRATAMIENTOS.PROCEDIMIENTO_CUPS_ID is
+'procedimiento_cups_id';
+
+comment on column HISTORIA_TRATAMIENTOS.NOTA_MEDICA is
+'nota_medica';
+
+comment on column HISTORIA_TRATAMIENTOS.PROFESIONAL_SALUD is
+'profesional_salud';
+
+comment on column HISTORIA_TRATAMIENTOS.ESTADO is
+'estado';
+
+comment on column HISTORIA_TRATAMIENTOS.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column HISTORIA_TRATAMIENTOS.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column HISTORIA_TRATAMIENTOS.USUARIO_ID is
+'usuario_id';
+
+comment on column HISTORIA_TRATAMIENTOS.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: MEMBRESIA                                             */
+/*==============================================================*/
+create table MEMBRESIA (
+   ID                   VARCHAR(3)           not null,
+   NOMBRE               VARCHAR(20)          not null,
+   DESCRIPCION          VARCHAR(100)         not null,
+   VIGENTE_DESDE        DATE                 not null,
+   VIGENTE_HASTA        DATE                 null,
+   constraint PK_MEMBRESIA primary key (ID)
+);
+
+comment on table MEMBRESIA is
+'membresia';
+
+comment on column MEMBRESIA.ID is
+'id';
+
+comment on column MEMBRESIA.NOMBRE is
 'nombre';
 
-comment on column moneda.simbolo is
+comment on column MEMBRESIA.DESCRIPCION is
+'descripcion';
+
+comment on column MEMBRESIA.VIGENTE_DESDE is
+'vigente_desde';
+
+comment on column MEMBRESIA.VIGENTE_HASTA is
+'vigente_hasta';
+
+/*==============================================================*/
+/* Table: MEMBRESIA_SERVICIOS                                   */
+/*==============================================================*/
+create table MEMBRESIA_SERVICIOS (
+   ID                   NUMERIC(5)           not null default NEXTVAL('membresia_servicios_seq'),
+   MEMBRESIA_ID         VARCHAR(3)           not null,
+   SERVICIO_ID          VARCHAR(3)           not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_MEMBRESIA_SERVICIOS primary key (ID)
+);
+
+comment on table MEMBRESIA_SERVICIOS is
+'membresia_servicios';
+
+comment on column MEMBRESIA_SERVICIOS.ID is
+'id';
+
+comment on column MEMBRESIA_SERVICIOS.MEMBRESIA_ID is
+'membresia_id';
+
+comment on column MEMBRESIA_SERVICIOS.SERVICIO_ID is
+'servicio_id';
+
+comment on column MEMBRESIA_SERVICIOS.ESTADO is
+'estado';
+
+comment on column MEMBRESIA_SERVICIOS.FECHA_REGISTRO is
+'fecha_registro';
+
+comment on column MEMBRESIA_SERVICIOS.FECHA_ACTUALIZACION is
+'fecha_actualizacion';
+
+comment on column MEMBRESIA_SERVICIOS.USUARIO_ID is
+'usuario_id';
+
+comment on column MEMBRESIA_SERVICIOS.IP_ADDRESS is
+'ip_address';
+
+/*==============================================================*/
+/* Table: METODLOGIA_ENTRENAMIENTOS                             */
+/*==============================================================*/
+create table METODLOGIA_ENTRENAMIENTOS (
+   METODOLOGIA_ID       VARCHAR(5)           not null,
+   ENTRENAMIENTO_ID     VARCHAR(5)           not null,
+   constraint PK_METODLOGIA_ENTRENAMIENTOS primary key (METODOLOGIA_ID, ENTRENAMIENTO_ID)
+);
+
+comment on table METODLOGIA_ENTRENAMIENTOS is
+'metodlogia_entrenamientos';
+
+comment on column METODLOGIA_ENTRENAMIENTOS.METODOLOGIA_ID is
+'metodologia_id';
+
+comment on column METODLOGIA_ENTRENAMIENTOS.ENTRENAMIENTO_ID is
+'entrenamiento_id';
+
+/*==============================================================*/
+/* Table: METODOLOGIA                                           */
+/*==============================================================*/
+create table METODOLOGIA (
+   ID                   VARCHAR(5)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   URL_WIKI             VARCHAR(100)         null,
+   URL_YOUTUBE          VARCHAR(100)         null,
+   URL_ORGANIZACION     VARCHAR(100)         null,
+   constraint PK_METODOLOGIA primary key (ID)
+);
+
+comment on table METODOLOGIA is
+'metodologia';
+
+comment on column METODOLOGIA.ID is
+'id';
+
+comment on column METODOLOGIA.NOMBRE is
+'nombre';
+
+comment on column METODOLOGIA.DESCRIPCION is
+'descripcion';
+
+comment on column METODOLOGIA.URL_WIKI is
+'url_wiki';
+
+comment on column METODOLOGIA.URL_YOUTUBE is
+'url_youtube';
+
+comment on column METODOLOGIA.URL_ORGANIZACION is
+'url_organizacion';
+
+/*==============================================================*/
+/* Table: MONEDA                                                */
+/*==============================================================*/
+create table MONEDA (
+   ID                   VARCHAR(3)           not null,
+   NOMBRE               VARCHAR(30)          not null,
+   SIMBOLO              VARCHAR(6)           not null,
+   constraint PK_MONEDA primary key (ID)
+);
+
+comment on table MONEDA is
+'moneda';
+
+comment on column MONEDA.ID is
+'id';
+
+comment on column MONEDA.NOMBRE is
+'nombre';
+
+comment on column MONEDA.SIMBOLO is
 'simbolo';
 
 /*==============================================================*/
-/* Table: moneda_paises                                         */
+/* Table: MONEDA_PAISES                                         */
 /*==============================================================*/
-create table moneda_paises (
-   pais_id              varchar(3)           not null,
-   moneda_id            varchar(3)           not null,
-   corriente            numeric(1)           null default 1,
-   estado               numeric(1)           null default 1,
-   constraint pk_moneda_paises primary key (pais_id, moneda_id)
+create table MONEDA_PAISES (
+   PAIS_ID              VARCHAR(3)           not null,
+   MONEDA_ID            VARCHAR(3)           not null,
+   CORRIENTE            NUMERIC(1)           null default 1,
+   ESTADO               NUMERIC(1)           null default 1,
+   constraint PK_MONEDA_PAISES primary key (PAIS_ID, MONEDA_ID)
 );
 
-comment on table moneda_paises is
+comment on table MONEDA_PAISES is
 'moneda_paises';
 
-comment on column moneda_paises.pais_id is
+comment on column MONEDA_PAISES.PAIS_ID is
 'pais_id';
 
-comment on column moneda_paises.moneda_id is
+comment on column MONEDA_PAISES.MONEDA_ID is
 'moneda_id';
 
-comment on column moneda_paises.corriente is
+comment on column MONEDA_PAISES.CORRIENTE is
 'corriente';
 
-comment on column moneda_paises.estado is
+comment on column MONEDA_PAISES.ESTADO is
 'estado';
 
 /*==============================================================*/
-/* Table: pago                                                  */
+/* Table: PAGO                                                  */
 /*==============================================================*/
-create table pago (
-   id                   numeric(15)          not null default nextval('pago_seq'),
-   fecha                date                 not null,
-   punto_venta_id       varchar(5)           not null,
-   pago_estado_id       varchar(5)           null,
-   total_facturas       numeric(15,2)        not null default 0,
-   total_pagos          numeric(15,2)        not null default 0,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_pago primary key (id)
+create table PAGO (
+   ID                   NUMERIC(15)          not null default NEXTVAL('pago_seq'),
+   FECHA                DATE                 not null,
+   PUNTO_VENTA_ID       VARCHAR(5)           not null,
+   PAGO_ESTADO_ID       VARCHAR(5)           null,
+   TOTAL_FACTURAS       NUMERIC(15,2)        not null default 0,
+   TOTAL_PAGOS          NUMERIC(15,2)        not null default 0,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PAGO primary key (ID)
 );
 
-comment on table pago is
+comment on table PAGO is
 'pago';
 
-comment on column pago.id is
+comment on column PAGO.ID is
 'id';
 
-comment on column pago.fecha is
+comment on column PAGO.FECHA is
 'fecha';
 
-comment on column pago.punto_venta_id is
+comment on column PAGO.PUNTO_VENTA_ID is
 'punto_venta_id';
 
-comment on column pago.pago_estado_id is
+comment on column PAGO.PAGO_ESTADO_ID is
 'pago_estado_id';
 
-comment on column pago.total_facturas is
+comment on column PAGO.TOTAL_FACTURAS is
 'total_facturas';
 
-comment on column pago.total_pagos is
+comment on column PAGO.TOTAL_PAGOS is
 'total_pagos';
 
-comment on column pago.fecha_registro is
+comment on column PAGO.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column pago.fecha_actualizacion is
+comment on column PAGO.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column pago.usuario_id is
+comment on column PAGO.USUARIO_ID is
 'usuario_id';
 
-comment on column pago.ip_address is
+comment on column PAGO.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: pago_detalles                                         */
+/* Table: PAGO_DETALLES                                         */
 /*==============================================================*/
-create table pago_detalles (
-   id                   numeric(20)          not null default nextval('pago_detalles_seq'),
-   pago_id              numeric(15)          not null,
-   tipo_pago_id         varchar(2)           not null,
-   cupo_id              varchar(5)           null,
-   moneda_id            varchar(3)           not null,
-   valor                numeric(15,2)        not null default 0,
-   autorizacion_franquicia varchar(20)          null,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_pago_detalles primary key (id)
+create table PAGO_DETALLES (
+   ID                   NUMERIC(20)          not null default NEXTVAL('pago_detalles_seq'),
+   PAGO_ID              NUMERIC(15)          not null,
+   TIPO_PAGO_ID         VARCHAR(2)           not null,
+   CUPO_ID              VARCHAR(5)           null,
+   MONEDA_ID            VARCHAR(3)           not null,
+   VALOR                NUMERIC(15,2)        not null default 0,
+   AUTORIZACION_FRANQUICIA VARCHAR(20)          null,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PAGO_DETALLES primary key (ID)
 );
 
-comment on table pago_detalles is
+comment on table PAGO_DETALLES is
 'pago_detalles';
 
-comment on column pago_detalles.id is
+comment on column PAGO_DETALLES.ID is
 'id';
 
-comment on column pago_detalles.pago_id is
+comment on column PAGO_DETALLES.PAGO_ID is
 'pago_id';
 
-comment on column pago_detalles.tipo_pago_id is
+comment on column PAGO_DETALLES.TIPO_PAGO_ID is
 'tipo_pago_id';
 
-comment on column pago_detalles.cupo_id is
+comment on column PAGO_DETALLES.CUPO_ID is
 'cupo_id';
 
-comment on column pago_detalles.moneda_id is
+comment on column PAGO_DETALLES.MONEDA_ID is
 'moneda_id';
 
-comment on column pago_detalles.valor is
+comment on column PAGO_DETALLES.VALOR is
 'valor';
 
-comment on column pago_detalles.autorizacion_franquicia is
+comment on column PAGO_DETALLES.AUTORIZACION_FRANQUICIA is
 'autorizacion_franquicia';
 
-comment on column pago_detalles.fecha_registro is
+comment on column PAGO_DETALLES.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column pago_detalles.fecha_actualizacion is
+comment on column PAGO_DETALLES.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column pago_detalles.usuario_id is
+comment on column PAGO_DETALLES.USUARIO_ID is
 'usuario_id';
 
-comment on column pago_detalles.ip_address is
+comment on column PAGO_DETALLES.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: pago_estado                                           */
+/* Table: PAGO_ESTADO                                           */
 /*==============================================================*/
-create table pago_estado (
-   id                   varchar(5)           not null,
-   siguiente            varchar(5)           null,
-   previo               varchar(5)           null,
-   inicial              numeric(1)           null default 0
-      constraint ckc_inicial_pago_est check (inicial is null or (inicial between 0 and 1)),
-   final                numeric(1)           null default 0
-      constraint ckc_final_pago_est check (final is null or (final between 0 and 1)),
-   constraint pk_pago_estado primary key (id)
+create table PAGO_ESTADO (
+   ID                   VARCHAR(5)           not null,
+   SIGUIENTE            VARCHAR(5)           null,
+   PREVIO               VARCHAR(5)           null,
+   INICIAL              NUMERIC(1)           null default 0
+      constraint CKC_INICIAL_PAGO_EST check (INICIAL is null or (INICIAL between 0 and 1)),
+   FINAL                NUMERIC(1)           null default 0
+      constraint CKC_FINAL_PAGO_EST check (FINAL is null or (FINAL between 0 and 1)),
+   constraint PK_PAGO_ESTADO primary key (ID)
 );
 
-comment on table pago_estado is
+comment on table PAGO_ESTADO is
 'pago_estado';
 
-comment on column pago_estado.id is
+comment on column PAGO_ESTADO.ID is
 'id';
 
-comment on column pago_estado.siguiente is
+comment on column PAGO_ESTADO.SIGUIENTE is
 'siguiente';
 
-comment on column pago_estado.previo is
+comment on column PAGO_ESTADO.PREVIO is
 'previo';
 
-comment on column pago_estado.inicial is
+comment on column PAGO_ESTADO.INICIAL is
 'inicial';
 
-comment on column pago_estado.final is
+comment on column PAGO_ESTADO.FINAL is
 'final';
 
 /*==============================================================*/
-/* Table: pago_facturas                                         */
+/* Table: PAGO_FACTURAS                                         */
 /*==============================================================*/
-create table pago_facturas (
-   id                   numeric(20)          not null default nextval('pago_facturas_seq'),
-   pago_id              numeric(15)          not null,
-   factura_id           numeric(15)          not null,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   constraint pk_pago_facturas primary key (id)
+create table PAGO_FACTURAS (
+   ID                   NUMERIC(20)          not null default NEXTVAL('pago_facturas_seq'),
+   PAGO_ID              NUMERIC(15)          not null,
+   FACTURA_ID           NUMERIC(15)          not null,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   constraint PK_PAGO_FACTURAS primary key (ID)
 );
 
-comment on table pago_facturas is
+comment on table PAGO_FACTURAS is
 'pago_facturas';
 
-comment on column pago_facturas.id is
+comment on column PAGO_FACTURAS.ID is
 'id';
 
-comment on column pago_facturas.pago_id is
+comment on column PAGO_FACTURAS.PAGO_ID is
 'pago_id';
 
-comment on column pago_facturas.factura_id is
+comment on column PAGO_FACTURAS.FACTURA_ID is
 'factura_id';
 
-comment on column pago_facturas.fecha_registro is
+comment on column PAGO_FACTURAS.FECHA_REGISTRO is
 'fecha_registro';
 
 /*==============================================================*/
-/* Table: pais                                                  */
+/* Table: PAIS                                                  */
 /*==============================================================*/
-create table pais (
-   id                   varchar(3)           not null,
-   nombre               varchar(50)          not null,
-   indicativo_telefonico numeric(4)           not null,
-   continente_id        varchar(2)           not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_pais primary key (id)
+create table PAIS (
+   ID                   VARCHAR(3)           not null,
+   NOMBRE               VARCHAR(50)          not null,
+   INDICATIVO_TELEFONICO NUMERIC(4)           not null,
+   CONTINENTE_ID        VARCHAR(2)           not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PAIS primary key (ID)
 );
 
-comment on table pais is
+comment on table PAIS is
 'pais';
 
-comment on column pais.id is
+comment on column PAIS.ID is
 'id';
 
-comment on column pais.nombre is
+comment on column PAIS.NOMBRE is
 'nombre';
 
-comment on column pais.indicativo_telefonico is
+comment on column PAIS.INDICATIVO_TELEFONICO is
 'indicativo_telefonico';
 
-comment on column pais.continente_id is
+comment on column PAIS.CONTINENTE_ID is
 'continente_id';
 
-comment on column pais.estado is
+comment on column PAIS.ESTADO is
 'estado';
 
-comment on column pais.fecha_registro is
+comment on column PAIS.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column pais.fecha_actualizacion is
+comment on column PAIS.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column pais.usuario_id is
+comment on column PAIS.USUARIO_ID is
 'usuario_id';
 
-comment on column pais.ip_address is
+comment on column PAIS.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: persona                                               */
+/* Table: PERSONA                                               */
 /*==============================================================*/
-create table persona (
-   id                   numeric(10)          not null default nextval('persona_seq'),
-   nombre               varchar(20)          not null,
-   nombre_sec           varchar(20)          null,
-   apellido             varchar(40)          not null,
-   apellido_sec         varchar(40)          null,
-   tipo_documento_id    varchar(2)           not null,
-   documento            varchar(20)          not null,
-   fecha_nacimiento     date                 not null,
-   nacionalidad_pais_id varchar(3)           not null,
-   lugar_nacimiento_ciudad_id varchar(5)           not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_persona primary key (id)
+create table PERSONA (
+   ID                   NUMERIC(10)          not null default NEXTVAL('persona_seq'),
+   NOMBRE               VARCHAR(20)          not null,
+   NOMBRE_SEC           VARCHAR(20)          null,
+   APELLIDO             VARCHAR(40)          not null,
+   APELLIDO_SEC         VARCHAR(40)          null,
+   TIPO_DOCUMENTO_ID    VARCHAR(2)           not null,
+   DOCUMENTO            VARCHAR(20)          not null,
+   FECHA_NACIMIENTO     DATE                 not null,
+   NACIONALIDAD_PAIS_ID VARCHAR(3)           not null,
+   LUGAR_NACIMIENTO_CIUDAD_ID VARCHAR(5)           not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PERSONA primary key (ID)
 );
 
-comment on table persona is
+comment on table PERSONA is
 'persona';
 
-comment on column persona.id is
+comment on column PERSONA.ID is
 'id';
 
-comment on column persona.nombre is
+comment on column PERSONA.NOMBRE is
 'nombre';
 
-comment on column persona.nombre_sec is
+comment on column PERSONA.NOMBRE_SEC is
 'nombre_sec';
 
-comment on column persona.apellido is
+comment on column PERSONA.APELLIDO is
 'apellido';
 
-comment on column persona.apellido_sec is
+comment on column PERSONA.APELLIDO_SEC is
 'apellido_sec';
 
-comment on column persona.tipo_documento_id is
+comment on column PERSONA.TIPO_DOCUMENTO_ID is
 'tipo_documento_id';
 
-comment on column persona.documento is
+comment on column PERSONA.DOCUMENTO is
 'documento';
 
-comment on column persona.fecha_nacimiento is
+comment on column PERSONA.FECHA_NACIMIENTO is
 'fecha_nacimiento';
 
-comment on column persona.nacionalidad_pais_id is
+comment on column PERSONA.NACIONALIDAD_PAIS_ID is
 'nacionalidad_pais_id';
 
-comment on column persona.lugar_nacimiento_ciudad_id is
+comment on column PERSONA.LUGAR_NACIMIENTO_CIUDAD_ID is
 'lugar_nacimiento_ciudad_id';
 
-comment on column persona.estado is
+comment on column PERSONA.ESTADO is
 'estado';
 
-comment on column persona.fecha_registro is
+comment on column PERSONA.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column persona.fecha_actualizacion is
+comment on column PERSONA.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column persona.usuario_id is
+comment on column PERSONA.USUARIO_ID is
 'usuario_id';
 
-comment on column persona.ip_address is
+comment on column PERSONA.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: persona_emails                                        */
+/* Table: PERSONA_EMAILS                                        */
 /*==============================================================*/
-create table persona_emails (
-   id                   numeric(10)          not null default nextval('persona_emails_seq'),
-   persona_id           numeric(10)          not null,
-   tipo_email_id        varchar(3)           not null,
-   email                varchar(50)          not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_persona_emails primary key (id)
+create table PERSONA_EMAILS (
+   ID                   NUMERIC(10)          not null default NEXTVAL('persona_emails_seq'),
+   PERSONA_ID           NUMERIC(10)          not null,
+   TIPO_EMAIL_ID        VARCHAR(3)           not null,
+   EMAIL                VARCHAR(50)          not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PERSONA_EMAILS primary key (ID)
 );
 
-comment on table persona_emails is
+comment on table PERSONA_EMAILS is
 'persona_emails';
 
-comment on column persona_emails.id is
+comment on column PERSONA_EMAILS.ID is
 'id';
 
-comment on column persona_emails.persona_id is
+comment on column PERSONA_EMAILS.PERSONA_ID is
 'persona_id';
 
-comment on column persona_emails.tipo_email_id is
+comment on column PERSONA_EMAILS.TIPO_EMAIL_ID is
 'tipo_email_id';
 
-comment on column persona_emails.email is
+comment on column PERSONA_EMAILS.EMAIL is
 'email';
 
-comment on column persona_emails.estado is
+comment on column PERSONA_EMAILS.ESTADO is
 'estado';
 
-comment on column persona_emails.fecha_registro is
+comment on column PERSONA_EMAILS.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column persona_emails.fecha_actualizacion is
+comment on column PERSONA_EMAILS.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column persona_emails.usuario_id is
+comment on column PERSONA_EMAILS.USUARIO_ID is
 'usuario_id';
 
-comment on column persona_emails.ip_address is
+comment on column PERSONA_EMAILS.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: persona_roles                                         */
+/* Table: PERSONA_ROLES                                         */
 /*==============================================================*/
-create table persona_roles (
-   persona_id           numeric(10)          not null,
-   rol_persona_id       varchar(3)           not null,
-   persona_telefonos_id numeric(5)           null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_persona_roles primary key (persona_id, rol_persona_id)
+create table PERSONA_ROLES (
+   PERSONA_ID           NUMERIC(10)          not null,
+   ROL_PERSONA_ID       VARCHAR(3)           not null,
+   PERSONA_TELEFONOS_ID NUMERIC(5)           null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PERSONA_ROLES primary key (PERSONA_ID, ROL_PERSONA_ID)
 );
 
-comment on table persona_roles is
+comment on table PERSONA_ROLES is
 'persona_roles';
 
-comment on column persona_roles.persona_id is
+comment on column PERSONA_ROLES.PERSONA_ID is
 'persona_id';
 
-comment on column persona_roles.rol_persona_id is
+comment on column PERSONA_ROLES.ROL_PERSONA_ID is
 'rol_persona_id';
 
-comment on column persona_roles.persona_telefonos_id is
+comment on column PERSONA_ROLES.PERSONA_TELEFONOS_ID is
 'persona_telefonos_id';
 
-comment on column persona_roles.estado is
+comment on column PERSONA_ROLES.ESTADO is
 'estado';
 
-comment on column persona_roles.fecha_registro is
+comment on column PERSONA_ROLES.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column persona_roles.fecha_actualizacion is
+comment on column PERSONA_ROLES.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column persona_roles.usuario_id is
+comment on column PERSONA_ROLES.USUARIO_ID is
 'usuario_id';
 
-comment on column persona_roles.ip_address is
+comment on column PERSONA_ROLES.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: persona_telefonos                                     */
+/* Table: PERSONA_TELEFONOS                                     */
 /*==============================================================*/
-create table persona_telefonos (
-   id                   numeric(5)           not null default nextval('persona_telefonos_seq'),
-   tipo_telefono_id     varchar(3)           not null,
-   persona_id           numeric(10)          not null,
-   pais_id              varchar(3)           not null,
-   numero               numeric(15)          not null,
-   whatsapp             numeric(1)           null default 0,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_persona_telefonos primary key (id)
+create table PERSONA_TELEFONOS (
+   ID                   NUMERIC(5)           not null default NEXTVAL('persona_telefonos_seq'),
+   TIPO_TELEFONO_ID     VARCHAR(3)           not null,
+   PERSONA_ID           NUMERIC(10)          not null,
+   PAIS_ID              VARCHAR(3)           not null,
+   NUMERO               NUMERIC(15)          not null,
+   WHATSAPP             NUMERIC(1)           null default 0,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PERSONA_TELEFONOS primary key (ID)
 );
 
-comment on table persona_telefonos is
+comment on table PERSONA_TELEFONOS is
 'persona_telefonos';
 
-comment on column persona_telefonos.id is
+comment on column PERSONA_TELEFONOS.ID is
 'id';
 
-comment on column persona_telefonos.tipo_telefono_id is
+comment on column PERSONA_TELEFONOS.TIPO_TELEFONO_ID is
 'tipo_telefono_id';
 
-comment on column persona_telefonos.persona_id is
+comment on column PERSONA_TELEFONOS.PERSONA_ID is
 'persona_id';
 
-comment on column persona_telefonos.pais_id is
+comment on column PERSONA_TELEFONOS.PAIS_ID is
 'pais_id';
 
-comment on column persona_telefonos.numero is
+comment on column PERSONA_TELEFONOS.NUMERO is
 'numero';
 
-comment on column persona_telefonos.whatsapp is
+comment on column PERSONA_TELEFONOS.WHATSAPP is
 'whatsapp';
 
-comment on column persona_telefonos.estado is
+comment on column PERSONA_TELEFONOS.ESTADO is
 'estado';
 
-comment on column persona_telefonos.fecha_registro is
+comment on column PERSONA_TELEFONOS.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column persona_telefonos.fecha_actualizacion is
+comment on column PERSONA_TELEFONOS.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column persona_telefonos.usuario_id is
+comment on column PERSONA_TELEFONOS.USUARIO_ID is
 'usuario_id';
 
-comment on column persona_telefonos.ip_address is
+comment on column PERSONA_TELEFONOS.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Index: idx_pais_numero                                       */
+/* Index: IDX_PAIS_NUMERO                                       */
 /*==============================================================*/
-create unique index idx_pais_numero on persona_telefonos (
-pais_id,
-numero
+create unique index IDX_PAIS_NUMERO on PERSONA_TELEFONOS (
+PAIS_ID,
+NUMERO
 );
 
 /*==============================================================*/
-/* Table: procedimiento                                         */
+/* Table: PROCEDIMIENTO                                         */
 /*==============================================================*/
-create table procedimiento (
-   id                   varchar(5)           not null,
-   proceso_id           varchar(2)           not null,
-   servicio_id          varchar(3)           null,
-   nombre               varchar(30)          not null,
-   descripcion          varchar(100)         null,
-   constraint pk_procedimiento primary key (id)
+create table PROCEDIMIENTO (
+   ID                   VARCHAR(5)           not null,
+   PROCESO_ID           VARCHAR(2)           not null,
+   SERVICIO_ID          VARCHAR(3)           null,
+   NOMBRE               VARCHAR(30)          not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   constraint PK_PROCEDIMIENTO primary key (ID)
 );
 
-comment on table procedimiento is
+comment on table PROCEDIMIENTO is
 'procedimiento';
 
-comment on column procedimiento.id is
+comment on column PROCEDIMIENTO.ID is
 'id';
 
-comment on column procedimiento.proceso_id is
+comment on column PROCEDIMIENTO.PROCESO_ID is
 'proceso_id';
 
-comment on column procedimiento.servicio_id is
+comment on column PROCEDIMIENTO.SERVICIO_ID is
 'servicio_id';
 
-comment on column procedimiento.nombre is
+comment on column PROCEDIMIENTO.NOMBRE is
 'nombre';
 
-comment on column procedimiento.descripcion is
+comment on column PROCEDIMIENTO.DESCRIPCION is
 'descripcion';
 
 /*==============================================================*/
-/* Table: proceso                                               */
+/* Table: PROCEDIMIENTO_CUPS                                    */
 /*==============================================================*/
-create table proceso (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   descripcion          varchar(100)         null,
-   constraint pk_proceso primary key (id)
+create table PROCEDIMIENTO_CUPS (
+   ID                   VARCHAR(6)           not null,
+   CUPS                 VARCHAR(10)          not null,
+   NOMBRE               VARCHAR(100)         not null,
+   DESCRIPCION          VARCHAR(200)         null,
+   constraint PK_PROCEDIMIENTO_CUPS primary key (ID)
 );
 
-comment on table proceso is
+comment on table PROCEDIMIENTO_CUPS is
+'procedimiento_cups';
+
+comment on column PROCEDIMIENTO_CUPS.ID is
+'id';
+
+comment on column PROCEDIMIENTO_CUPS.CUPS is
+'cups';
+
+comment on column PROCEDIMIENTO_CUPS.NOMBRE is
+'nombre';
+
+comment on column PROCEDIMIENTO_CUPS.DESCRIPCION is
+'descripcion';
+
+/*==============================================================*/
+/* Table: PROCESO                                               */
+/*==============================================================*/
+create table PROCESO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   constraint PK_PROCESO primary key (ID)
+);
+
+comment on table PROCESO is
 'proceso';
 
-comment on column proceso.id is
+comment on column PROCESO.ID is
 'id';
 
-comment on column proceso.nombre is
+comment on column PROCESO.NOMBRE is
 'nombre';
 
-comment on column proceso.descripcion is
+comment on column PROCESO.DESCRIPCION is
 'descripcion';
 
 /*==============================================================*/
-/* Table: producto                                              */
+/* Table: PRODUCTO                                              */
 /*==============================================================*/
-create table producto (
-   id                   varchar(6)           not null,
-   nombre               varchar(50)          not null,
-   descripcion          varchar(100)         null,
-   membresia_id         varchar(3)           null,
-   tipo_producto_id     varchar(2)           not null,
-   vigente_desde        date                 null default current_date,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_producto primary key (id)
+create table PRODUCTO (
+   ID                   VARCHAR(6)           not null,
+   NOMBRE               VARCHAR(50)          not null,
+   DESCRIPCION          VARCHAR(100)         null,
+   MEMBRESIA_ID         VARCHAR(3)           null,
+   TIPO_PRODUCTO_ID     VARCHAR(2)           not null,
+   VIGENTE_DESDE        DATE                 null default CURRENT_DATE,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PRODUCTO primary key (ID)
 );
 
-comment on table producto is
+comment on table PRODUCTO is
 'producto';
 
-comment on column producto.id is
+comment on column PRODUCTO.ID is
 'id';
 
-comment on column producto.nombre is
+comment on column PRODUCTO.NOMBRE is
 'nombre';
 
-comment on column producto.descripcion is
+comment on column PRODUCTO.DESCRIPCION is
 'descripcion';
 
-comment on column producto.membresia_id is
+comment on column PRODUCTO.MEMBRESIA_ID is
 'membresia_id';
 
-comment on column producto.tipo_producto_id is
+comment on column PRODUCTO.TIPO_PRODUCTO_ID is
 'tipo_producto_id';
 
-comment on column producto.vigente_desde is
+comment on column PRODUCTO.VIGENTE_DESDE is
 'vigente_desde';
 
-comment on column producto.estado is
+comment on column PRODUCTO.ESTADO is
 'estado';
 
-comment on column producto.fecha_registro is
+comment on column PRODUCTO.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column producto.fecha_actualizacion is
+comment on column PRODUCTO.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column producto.usuario_id is
+comment on column PRODUCTO.USUARIO_ID is
 'usuario_id';
 
-comment on column producto.ip_address is
+comment on column PRODUCTO.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: producto_costo                                        */
+/* Table: PRODUCTO_COSTO                                        */
 /*==============================================================*/
-create table producto_costo (
-   id                   numeric(5)           not null default nextval('producto_costo_seq'),
-   producto_id          varchar(6)           not null,
-   valor                numeric(15,2)        not null default 0,
-   vigente_desde        date                 null default current_date,
-   vigente_hasta        date                 null default current_date,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_producto_costo primary key (id)
+create table PRODUCTO_COSTO (
+   ID                   NUMERIC(5)           not null default NEXTVAL('producto_costo_seq'),
+   PRODUCTO_ID          VARCHAR(6)           not null,
+   VALOR                NUMERIC(15,2)        not null default 0,
+   VIGENTE_DESDE        DATE                 null default CURRENT_DATE,
+   VIGENTE_HASTA        DATE                 null default CURRENT_DATE,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PRODUCTO_COSTO primary key (ID)
 );
 
-comment on table producto_costo is
+comment on table PRODUCTO_COSTO is
 'producto_costo';
 
-comment on column producto_costo.id is
+comment on column PRODUCTO_COSTO.ID is
 'id';
 
-comment on column producto_costo.producto_id is
+comment on column PRODUCTO_COSTO.PRODUCTO_ID is
 'producto_id';
 
-comment on column producto_costo.valor is
+comment on column PRODUCTO_COSTO.VALOR is
 'valor';
 
-comment on column producto_costo.vigente_desde is
+comment on column PRODUCTO_COSTO.VIGENTE_DESDE is
 'vigente_desde';
 
-comment on column producto_costo.vigente_hasta is
+comment on column PRODUCTO_COSTO.VIGENTE_HASTA is
 'vigente_hasta';
 
-comment on column producto_costo.estado is
+comment on column PRODUCTO_COSTO.ESTADO is
 'estado';
 
-comment on column producto_costo.fecha_registro is
+comment on column PRODUCTO_COSTO.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column producto_costo.fecha_actualizacion is
+comment on column PRODUCTO_COSTO.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column producto_costo.usuario_id is
+comment on column PRODUCTO_COSTO.USUARIO_ID is
 'usuario_id';
 
-comment on column producto_costo.ip_address is
+comment on column PRODUCTO_COSTO.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: punto_venta                                           */
+/* Table: PUNTO_VENTA                                           */
 /*==============================================================*/
-create table punto_venta (
-   id                   varchar(5)           not null,
-   tipo_punto_venta_id  varchar(2)           not null,
-   ciudad_id            varchar(5)           not null,
-   nombre               varchar(30)          not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_punto_venta primary key (id)
+create table PUNTO_VENTA (
+   ID                   VARCHAR(5)           not null,
+   TIPO_PUNTO_VENTA_ID  VARCHAR(2)           not null,
+   CIUDAD_ID            VARCHAR(5)           not null,
+   NOMBRE               VARCHAR(30)          not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_PUNTO_VENTA primary key (ID)
 );
 
-comment on table punto_venta is
+comment on table PUNTO_VENTA is
 'punto_venta';
 
-comment on column punto_venta.id is
+comment on column PUNTO_VENTA.ID is
 'id';
 
-comment on column punto_venta.tipo_punto_venta_id is
+comment on column PUNTO_VENTA.TIPO_PUNTO_VENTA_ID is
 'tipo_punto_venta_id';
 
-comment on column punto_venta.ciudad_id is
+comment on column PUNTO_VENTA.CIUDAD_ID is
 'ciudad_id';
 
-comment on column punto_venta.nombre is
+comment on column PUNTO_VENTA.NOMBRE is
 'nombre';
 
-comment on column punto_venta.estado is
+comment on column PUNTO_VENTA.ESTADO is
 'estado';
 
-comment on column punto_venta.fecha_registro is
+comment on column PUNTO_VENTA.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column punto_venta.fecha_actualizacion is
+comment on column PUNTO_VENTA.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column punto_venta.usuario_id is
+comment on column PUNTO_VENTA.USUARIO_ID is
 'usuario_id';
 
-comment on column punto_venta.ip_address is
+comment on column PUNTO_VENTA.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: resolucion                                            */
+/* Table: RESOLUCION                                            */
 /*==============================================================*/
-create table resolucion (
-   id                   numeric(3)           not null default nextval('resolucion_seq'),
-   codigo_dian          varchar(20)          not null,
-   descripcion          varchar(100)         not null,
-   fecha                date                 not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_resolucion primary key (id)
+create table RESOLUCION (
+   ID                   NUMERIC(3)           not null default NEXTVAL('resolucion_seq'),
+   CODIGO_DIAN          VARCHAR(20)          not null,
+   DESCRIPCION          VARCHAR(100)         not null,
+   FECHA                DATE                 not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_RESOLUCION primary key (ID)
 );
 
-comment on table resolucion is
+comment on table RESOLUCION is
 'resolucion';
 
-comment on column resolucion.id is
+comment on column RESOLUCION.ID is
 'id';
 
-comment on column resolucion.codigo_dian is
+comment on column RESOLUCION.CODIGO_DIAN is
 'codigo_dian';
 
-comment on column resolucion.descripcion is
+comment on column RESOLUCION.DESCRIPCION is
 'descripcion';
 
-comment on column resolucion.fecha is
+comment on column RESOLUCION.FECHA is
 'fecha';
 
-comment on column resolucion.estado is
+comment on column RESOLUCION.ESTADO is
 'estado';
 
-comment on column resolucion.fecha_registro is
+comment on column RESOLUCION.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column resolucion.fecha_actualizacion is
+comment on column RESOLUCION.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column resolucion.usuario_id is
+comment on column RESOLUCION.USUARIO_ID is
 'usuario_id';
 
-comment on column resolucion.ip_address is
+comment on column RESOLUCION.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: resolucion_sec                                        */
+/* Table: RESOLUCION_SEC                                        */
 /*==============================================================*/
-create table resolucion_sec (
-   id                   numeric(5)           not null default nextval('resolucion_sec_seq'),
-   resolucion_id        numeric(3)           not null,
-   fecha                date                 not null default current_date,
-   prefijo              varchar(3)           not null,
-   secuencia_inicio     numeric(10)          not null,
-   secuencia_fin        numeric(10)          not null,
-   secuencia_actual     numeric(10)          not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_resolucion_sec primary key (id)
+create table RESOLUCION_SEC (
+   ID                   NUMERIC(5)           not null default NEXTVAL('resolucion_sec_seq'),
+   RESOLUCION_ID        NUMERIC(3)           not null,
+   FECHA                DATE                 not null default CURRENT_DATE,
+   PREFIJO              VARCHAR(3)           not null,
+   SECUENCIA_INICIO     NUMERIC(10)          not null,
+   SECUENCIA_FIN        NUMERIC(10)          not null,
+   SECUENCIA_ACTUAL     NUMERIC(10)          not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_RESOLUCION_SEC primary key (ID)
 );
 
-comment on table resolucion_sec is
+comment on table RESOLUCION_SEC is
 'resolucion_sec';
 
-comment on column resolucion_sec.id is
+comment on column RESOLUCION_SEC.ID is
 'id';
 
-comment on column resolucion_sec.resolucion_id is
+comment on column RESOLUCION_SEC.RESOLUCION_ID is
 'resolucion_id';
 
-comment on column resolucion_sec.fecha is
+comment on column RESOLUCION_SEC.FECHA is
 'fecha';
 
-comment on column resolucion_sec.prefijo is
+comment on column RESOLUCION_SEC.PREFIJO is
 'prefijo';
 
-comment on column resolucion_sec.secuencia_inicio is
+comment on column RESOLUCION_SEC.SECUENCIA_INICIO is
 'secuencia_inicio';
 
-comment on column resolucion_sec.secuencia_fin is
+comment on column RESOLUCION_SEC.SECUENCIA_FIN is
 'secuencia_fin';
 
-comment on column resolucion_sec.secuencia_actual is
+comment on column RESOLUCION_SEC.SECUENCIA_ACTUAL is
 'secuencia_actual';
 
-comment on column resolucion_sec.estado is
+comment on column RESOLUCION_SEC.ESTADO is
 'estado';
 
-comment on column resolucion_sec.fecha_registro is
+comment on column RESOLUCION_SEC.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column resolucion_sec.fecha_actualizacion is
+comment on column RESOLUCION_SEC.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column resolucion_sec.usuario_id is
+comment on column RESOLUCION_SEC.USUARIO_ID is
 'usuario_id';
 
-comment on column resolucion_sec.ip_address is
+comment on column RESOLUCION_SEC.IP_ADDRESS is
 'ip_address';
 
 /*==============================================================*/
-/* Table: rol_persona                                           */
+/* Table: ROL_PERSONA                                           */
 /*==============================================================*/
-create table rol_persona (
-   id                   varchar(3)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_rol_persona primary key (id)
+create table ROL_PERSONA (
+   ID                   VARCHAR(3)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_ROL_PERSONA primary key (ID)
 );
 
-comment on table rol_persona is
+comment on table ROL_PERSONA is
 'rol_persona';
 
-comment on column rol_persona.id is
+comment on column ROL_PERSONA.ID is
 'id';
 
-comment on column rol_persona.nombre is
+comment on column ROL_PERSONA.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: servicio                                              */
+/* Table: SERVICIO                                              */
 /*==============================================================*/
-create table servicio (
-   id                   varchar(3)           not null,
-   nombre               varchar(30)          not null,
-   tipo_servicio_id     varchar(2)           null,
-   constraint pk_servicio primary key (id)
+create table SERVICIO (
+   ID                   VARCHAR(3)           not null,
+   NOMBRE               VARCHAR(30)          not null,
+   TIPO_SERVICIO_ID     VARCHAR(2)           null,
+   constraint PK_SERVICIO primary key (ID)
 );
 
-comment on table servicio is
+comment on table SERVICIO is
 'servicio';
 
-comment on column servicio.id is
+comment on column SERVICIO.ID is
 'id';
 
-comment on column servicio.nombre is
+comment on column SERVICIO.NOMBRE is
 'nombre';
 
-comment on column servicio.tipo_servicio_id is
+comment on column SERVICIO.TIPO_SERVICIO_ID is
 'tipo_servicio_id';
 
 /*==============================================================*/
-/* Table: tipo_actividad                                        */
+/* Table: TIPO_ACCESO                                           */
 /*==============================================================*/
-create table tipo_actividad (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_actividad primary key (id)
+create table TIPO_ACCESO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_ACCESO primary key (ID)
 );
 
-comment on table tipo_actividad is
+comment on table TIPO_ACCESO is
+'tipo_acceso';
+
+comment on column TIPO_ACCESO.ID is
+'id';
+
+comment on column TIPO_ACCESO.NOMBRE is
+'nombre';
+
+/*==============================================================*/
+/* Table: TIPO_ACTIVIDAD                                        */
+/*==============================================================*/
+create table TIPO_ACTIVIDAD (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_ACTIVIDAD primary key (ID)
+);
+
+comment on table TIPO_ACTIVIDAD is
 'tipo_actividad';
 
-comment on column tipo_actividad.id is
+comment on column TIPO_ACTIVIDAD.ID is
 'id';
 
-comment on column tipo_actividad.nombre is
+comment on column TIPO_ACTIVIDAD.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_cupon                                            */
+/* Table: TIPO_CUPON                                            */
 /*==============================================================*/
-create table tipo_cupon (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_cupon primary key (id)
+create table TIPO_CUPON (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_CUPON primary key (ID)
 );
 
-comment on table tipo_cupon is
+comment on table TIPO_CUPON is
 'tipo_cupon';
 
-comment on column tipo_cupon.id is
+comment on column TIPO_CUPON.ID is
 'id';
 
-comment on column tipo_cupon.nombre is
+comment on column TIPO_CUPON.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_documento                                        */
+/* Table: TIPO_DOCUMENTO                                        */
 /*==============================================================*/
-create table tipo_documento (
-   id                   varchar(2)           not null,
-   nombre               varchar(50)          not null,
-   constraint pk_tipo_documento primary key (id)
+create table TIPO_DOCUMENTO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(50)          not null,
+   constraint PK_TIPO_DOCUMENTO primary key (ID)
 );
 
-comment on table tipo_documento is
+comment on table TIPO_DOCUMENTO is
 'tipo_documento';
 
-comment on column tipo_documento.id is
+comment on column TIPO_DOCUMENTO.ID is
 'id';
 
-comment on column tipo_documento.nombre is
+comment on column TIPO_DOCUMENTO.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_email                                            */
+/* Table: TIPO_EMAIL                                            */
 /*==============================================================*/
-create table tipo_email (
-   id                   varchar(3)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_email primary key (id)
+create table TIPO_EMAIL (
+   ID                   VARCHAR(3)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_EMAIL primary key (ID)
 );
 
-comment on table tipo_email is
+comment on table TIPO_EMAIL is
 'tipo_email';
 
-comment on column tipo_email.id is
+comment on column TIPO_EMAIL.ID is
 'id';
 
-comment on column tipo_email.nombre is
+comment on column TIPO_EMAIL.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_entrenamiento                                    */
+/* Table: TIPO_ENTRENAMIENTO                                    */
 /*==============================================================*/
-create table tipo_entrenamiento (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_entrenamiento primary key (id)
+create table TIPO_ENTRENAMIENTO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_ENTRENAMIENTO primary key (ID)
 );
 
-comment on table tipo_entrenamiento is
+comment on table TIPO_ENTRENAMIENTO is
 'tipo_entrenamiento';
 
-comment on column tipo_entrenamiento.id is
+comment on column TIPO_ENTRENAMIENTO.ID is
 'id';
 
-comment on column tipo_entrenamiento.nombre is
+comment on column TIPO_ENTRENAMIENTO.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_pago                                             */
+/* Table: TIPO_EVENTO                                           */
 /*==============================================================*/
-create table tipo_pago (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_pago primary key (id)
+create table TIPO_EVENTO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_EVENTO primary key (ID)
 );
 
-comment on table tipo_pago is
+comment on table TIPO_EVENTO is
+'tipo_evento';
+
+comment on column TIPO_EVENTO.ID is
+'id';
+
+comment on column TIPO_EVENTO.NOMBRE is
+'nombre';
+
+/*==============================================================*/
+/* Table: TIPO_PAGO                                             */
+/*==============================================================*/
+create table TIPO_PAGO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_PAGO primary key (ID)
+);
+
+comment on table TIPO_PAGO is
 'tipo_pago';
 
-comment on column tipo_pago.id is
+comment on column TIPO_PAGO.ID is
 'id';
 
-comment on column tipo_pago.nombre is
+comment on column TIPO_PAGO.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_producto                                         */
+/* Table: TIPO_PRODUCTO                                         */
 /*==============================================================*/
-create table tipo_producto (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_producto primary key (id)
+create table TIPO_PRODUCTO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_PRODUCTO primary key (ID)
 );
 
-comment on table tipo_producto is
+comment on table TIPO_PRODUCTO is
 'tipo_producto';
 
-comment on column tipo_producto.id is
+comment on column TIPO_PRODUCTO.ID is
 'id';
 
-comment on column tipo_producto.nombre is
+comment on column TIPO_PRODUCTO.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_punto_venta                                      */
+/* Table: TIPO_PUNTO_VENTA                                      */
 /*==============================================================*/
-create table tipo_punto_venta (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_punto_venta primary key (id)
+create table TIPO_PUNTO_VENTA (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_PUNTO_VENTA primary key (ID)
 );
 
-comment on table tipo_punto_venta is
+comment on table TIPO_PUNTO_VENTA is
 'tipo_punto_venta';
 
-comment on column tipo_punto_venta.id is
+comment on column TIPO_PUNTO_VENTA.ID is
 'id';
 
-comment on column tipo_punto_venta.nombre is
+comment on column TIPO_PUNTO_VENTA.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_servicio                                         */
+/* Table: TIPO_SERVICIO                                         */
 /*==============================================================*/
-create table tipo_servicio (
-   id                   varchar(2)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_servicio primary key (id)
+create table TIPO_SERVICIO (
+   ID                   VARCHAR(2)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_SERVICIO primary key (ID)
 );
 
-comment on table tipo_servicio is
+comment on table TIPO_SERVICIO is
 'tipo_servicio';
 
-comment on column tipo_servicio.id is
+comment on column TIPO_SERVICIO.ID is
 'id';
 
-comment on column tipo_servicio.nombre is
+comment on column TIPO_SERVICIO.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: tipo_telefono                                         */
+/* Table: TIPO_TELEFONO                                         */
 /*==============================================================*/
-create table tipo_telefono (
-   id                   varchar(3)           not null,
-   nombre               varchar(25)          not null,
-   constraint pk_tipo_telefono primary key (id)
+create table TIPO_TELEFONO (
+   ID                   VARCHAR(3)           not null,
+   NOMBRE               VARCHAR(25)          not null,
+   constraint PK_TIPO_TELEFONO primary key (ID)
 );
 
-comment on table tipo_telefono is
+comment on table TIPO_TELEFONO is
 'tipo_telefono';
 
-comment on column tipo_telefono.id is
+comment on column TIPO_TELEFONO.ID is
 'id';
 
-comment on column tipo_telefono.nombre is
+comment on column TIPO_TELEFONO.NOMBRE is
 'nombre';
 
 /*==============================================================*/
-/* Table: usuario                                               */
+/* Table: USUARIO                                               */
 /*==============================================================*/
-create table usuario (
-   id                   varchar(10)          not null,
-   nombre               varchar(50)          not null,
-   email                varchar(50)          not null,
-   password             varchar(50)          not null,
-   estado               numeric(1)           null default 1,
-   fecha_registro       timestamp with time zone null default current_timestamp,
-   fecha_actualizacion  timestamp with time zone null default current_timestamp,
-   usuario_id           varchar(10)          null,
-   ip_address           varchar(15)          null,
-   constraint pk_usuario primary key (id)
+create table USUARIO (
+   ID                   VARCHAR(10)          not null,
+   NOMBRE               VARCHAR(50)          not null,
+   EMAIL                VARCHAR(50)          not null,
+   PASSWORD             VARCHAR(50)          not null,
+   ESTADO               NUMERIC(1)           null default 1,
+   FECHA_REGISTRO       TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH TIME ZONE null default CURRENT_TIMESTAMP,
+   USUARIO_ID           VARCHAR(10)          null,
+   IP_ADDRESS           VARCHAR(15)          null,
+   constraint PK_USUARIO primary key (ID)
 );
 
-comment on table usuario is
+comment on table USUARIO is
 'usuario';
 
-comment on column usuario.id is
+comment on column USUARIO.ID is
 'id';
 
-comment on column usuario.nombre is
+comment on column USUARIO.NOMBRE is
 'nombre';
 
-comment on column usuario.email is
+comment on column USUARIO.EMAIL is
 'email';
 
-comment on column usuario.password is
+comment on column USUARIO.PASSWORD is
 'password';
 
-comment on column usuario.estado is
+comment on column USUARIO.ESTADO is
 'estado';
 
-comment on column usuario.fecha_registro is
+comment on column USUARIO.FECHA_REGISTRO is
 'fecha_registro';
 
-comment on column usuario.fecha_actualizacion is
+comment on column USUARIO.FECHA_ACTUALIZACION is
 'fecha_actualizacion';
 
-comment on column usuario.usuario_id is
+comment on column USUARIO.USUARIO_ID is
 'usuario_id';
 
-comment on column usuario.ip_address is
+comment on column USUARIO.IP_ADDRESS is
 'ip_address';
 
-alter table ciudad
-   add constraint fk_ciudad_ref_depto foreign key (depto_id)
-      references depto (id)
+alter table CHAT_CONVERSACION
+   add constraint FK_CHAT_CONV_RF_ESTADO foreign key (CHAT_ESTADO_ID)
+      references CHAT_ESTADO (ID)
       on delete restrict on update restrict;
 
-alter table cupon
-   add constraint fk_cupon_ref_moneda foreign key (moneda_id)
-      references moneda (id)
+alter table CHAT_CONVERSACION
+   add constraint FK_CHAT_RF_REM_PERSONA_TEL foreign key (PERSONA_TELEFONOS_ID)
+      references PERSONA_TELEFONOS (ID)
       on delete restrict on update restrict;
 
-alter table cupon
-   add constraint fk_cupon_ref_tipo_cupon foreign key (tipo_cupon_id)
-      references tipo_cupon (id)
+alter table CHAT_ENTRENAMIENTO_PLAN
+   add constraint FK_CHAT_ENT_RF_CHAT foreign key (CHAT_CONVERSACION_ID)
+      references CHAT_CONVERSACION (ID)
       on delete restrict on update restrict;
 
-alter table depto
-   add constraint fk_depto_ref_pais foreign key (pais_id)
-      references pais (id)
+alter table CHAT_ENTRENAMIENTO_PLAN
+   add constraint FK_CHAT_ENT_RF_ENT_PLAN foreign key (ENTRENAMIENTO_PLAN_ID)
+      references ENTRENAMIENTO_PLAN (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento
-   add constraint fk_entrenam_ref_pro_pro foreign key (procedimiento_id)
-      references procedimiento (id)
+alter table CHAT_MENSAJE
+   add constraint FK_CHAT_MSJ_RF_CHAT_CONV foreign key (CHAT_CONVERSACION_ID)
+      references CHAT_CONVERSACION (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento
-   add constraint fk_entrenam_ref_tipo_entre foreign key (tipo_entrenamiento_id)
-      references tipo_entrenamiento (id)
+alter table CHAT_MENSAJE_MEDIA
+   add constraint FK_CHAT_MM_RF_CHAT_MSJ foreign key (ID)
+      references CHAT_MENSAJE (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento_actividad
-   add constraint fk_entr_ref_tipo_act foreign key (tipo_actividad_id)
-      references tipo_actividad (id)
+alter table CIUDAD
+   add constraint FK_CIUDAD_REF_DEPTO foreign key (DEPTO_ID)
+      references DEPTO (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento_actividad
-   add constraint fk_ent_ref_ent_act foreign key (entrenamiento_id)
-      references entrenamiento (id)
+alter table CUPON
+   add constraint FK_CUPON_REF_MONEDA foreign key (MONEDA_ID)
+      references MONEDA (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento_plan
-   add constraint fk_entr_plan_ref_entr foreign key (entrenamiento_id)
-      references entrenamiento (id)
+alter table CUPON
+   add constraint FK_CUPON_REF_TIPO_CUPON foreign key (TIPO_CUPON_ID)
+      references TIPO_CUPON (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento_plan
-   add constraint fk_ent_plan_ref_per_atleta foreign key (atleta_id)
-      references persona (id)
+alter table DEPTO
+   add constraint FK_DEPTO_REF_PAIS foreign key (PAIS_ID)
+      references PAIS (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento_plan
-   add constraint fk_ent_plan_ref_per_entre foreign key (entrenador_id)
-      references persona (id)
+alter table ENTRENAMIENTO
+   add constraint FK_ENTRENAM_REF_PRO_PRO foreign key (PROCEDIMIENTO_ID)
+      references PROCEDIMIENTO (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento_seguimiento
-   add constraint fk_ent_seg_ref_ent_act foreign key (entrenamiento_actividad_id)
-      references entrenamiento_actividad (id)
+alter table ENTRENAMIENTO
+   add constraint FK_ENTRENAM_REF_TIPO_ENTRE foreign key (TIPO_ENTRENAMIENTO_ID)
+      references TIPO_ENTRENAMIENTO (ID)
       on delete restrict on update restrict;
 
-alter table entrenamiento_seguimiento
-   add constraint fk_ent_seg_ref_ent_plan foreign key (entrenamiento_plan_id)
-      references entrenamiento_plan (id)
+alter table ENTRENAMIENTO_ACTIVIDAD
+   add constraint FK_ENTR_REF_TIPO_ACT foreign key (TIPO_ACTIVIDAD_ID)
+      references TIPO_ACTIVIDAD (ID)
       on delete restrict on update restrict;
 
-alter table factura
-   add constraint fk_factura_ref_fact_est foreign key (factura_estado_id)
-      references factura_estado (id)
+alter table ENTRENAMIENTO_ACTIVIDAD
+   add constraint FK_ENT_REF_ENT_ACT foreign key (ENTRENAMIENTO_ID)
+      references ENTRENAMIENTO (ID)
       on delete restrict on update restrict;
 
-alter table factura
-   add constraint fk_factura_ref_moneda foreign key (moneda_id)
-      references moneda (id)
+alter table ENTRENAMIENTO_PLAN
+   add constraint FK_ENTR_PLAN_REF_ENTR foreign key (ENTRENAMIENTO_ID)
+      references ENTRENAMIENTO (ID)
       on delete restrict on update restrict;
 
-alter table factura
-   add constraint fk_factura_ref_persona foreign key (cliente_persona_id)
-      references persona (id)
+alter table ENTRENAMIENTO_PLAN
+   add constraint FK_ENT_PLAN_REF_PER_ATLETA foreign key (ATLETA_ID)
+      references PERSONA (ID)
       on delete restrict on update restrict;
 
-alter table factura
-   add constraint fk_factura_ref_punto_ven foreign key (punto_venta_id)
-      references punto_venta (id)
+alter table ENTRENAMIENTO_PLAN
+   add constraint FK_ENT_PLAN_REF_PER_ENTRE foreign key (ENTRENADOR_ID)
+      references PERSONA (ID)
       on delete restrict on update restrict;
 
-alter table factura
-   add constraint fk_factura_ref_resol_sec foreign key (resolucion_sec_id)
-      references resolucion_sec (id)
+alter table ENTRENAMIENTO_SEGUIMIENTO
+   add constraint FK_ENT_SEG_REF_ENT_ACT foreign key (ENTRENAMIENTO_ACTIVIDAD_ID)
+      references ENTRENAMIENTO_ACTIVIDAD (ID)
       on delete restrict on update restrict;
 
-alter table factura_detalle
-   add constraint fk_factura_det_ref_prod foreign key (producto_servicio_id)
-      references producto (id)
+alter table ENTRENAMIENTO_SEGUIMIENTO
+   add constraint FK_ENT_SEG_REF_ENT_PLAN foreign key (ENTRENAMIENTO_PLAN_ID)
+      references ENTRENAMIENTO_PLAN (ID)
       on delete restrict on update restrict;
 
-alter table factura_detalle
-   add constraint fk_fac_det_ref_factura foreign key (factura_id)
-      references factura (id)
+alter table EVENTO
+   add constraint FK_EVENTO_RF_CIUDAD foreign key (CIUDAD_ID)
+      references CIUDAD (ID)
       on delete restrict on update restrict;
 
-alter table membresia_servicios
-   add constraint fk_memb_ref_memb_ser foreign key (membresia_id)
-      references membresia (id)
+alter table EVENTO
+   add constraint FK_EVENTO_RF_TIPO_ACCESO foreign key (TIPO_ACCESO_ID)
+      references TIPO_ACCESO (ID)
       on delete restrict on update restrict;
 
-alter table membresia_servicios
-   add constraint fk_memb_ref_servicio foreign key (servicio_id)
-      references servicio (id)
+alter table EVENTO
+   add constraint FK_EVENTO_RF_TIPO_EVENTO foreign key (TIPO_EVENTO_ID)
+      references TIPO_EVENTO (ID)
       on delete restrict on update restrict;
 
-alter table moneda_paises
-   add constraint fk_pais_mon_ref_moneda foreign key (moneda_id)
-      references moneda (id)
+alter table EVENTO_PARTICIPANTES
+   add constraint FK_EVEPAR_RF_EVENTO foreign key (EVENTO_ID)
+      references EVENTO (ID)
       on delete restrict on update restrict;
 
-alter table moneda_paises
-   add constraint fk_pais_mon_ref_pais foreign key (pais_id)
-      references pais (id)
+alter table EVENTO_PARTICIPANTES
+   add constraint FK_EVEPAR_RF_PERSONA foreign key (PERSONA_ID)
+      references PERSONA (ID)
       on delete restrict on update restrict;
 
-alter table pago
-   add constraint fk_pago_ref_pago_est foreign key (pago_estado_id)
-      references pago_estado (id)
+alter table FACTURA
+   add constraint FK_FACTURA_REF_FACT_EST foreign key (FACTURA_ESTADO_ID)
+      references FACTURA_ESTADO (ID)
       on delete restrict on update restrict;
 
-alter table pago
-   add constraint fk_pago_ref_punto_ven foreign key (punto_venta_id)
-      references punto_venta (id)
+alter table FACTURA
+   add constraint FK_FACTURA_REF_MONEDA foreign key (MONEDA_ID)
+      references MONEDA (ID)
       on delete restrict on update restrict;
 
-alter table pago_detalles
-   add constraint fk_pago_det_ref_cupon foreign key (cupo_id)
-      references cupon (id)
+alter table FACTURA
+   add constraint FK_FACTURA_REF_PERSONA foreign key (CLIENTE_PERSONA_ID)
+      references PERSONA (ID)
       on delete restrict on update restrict;
 
-alter table pago_detalles
-   add constraint fk_pago_det_ref_moneda foreign key (moneda_id)
-      references moneda (id)
+alter table FACTURA
+   add constraint FK_FACTURA_REF_PUNTO_VEN foreign key (PUNTO_VENTA_ID)
+      references PUNTO_VENTA (ID)
       on delete restrict on update restrict;
 
-alter table pago_detalles
-   add constraint fk_pago_det_ref_pago foreign key (pago_id)
-      references pago (id)
+alter table FACTURA
+   add constraint FK_FACTURA_REF_RESOL_SEC foreign key (RESOLUCION_SEC_ID)
+      references RESOLUCION_SEC (ID)
       on delete restrict on update restrict;
 
-alter table pago_detalles
-   add constraint fk_pago_det_ref_tipo_pago foreign key (tipo_pago_id)
-      references tipo_pago (id)
+alter table FACTURA_DETALLE
+   add constraint FK_FACTURA_DET_REF_PROD foreign key (PRODUCTO_SERVICIO_ID)
+      references PRODUCTO (ID)
       on delete restrict on update restrict;
 
-alter table pago_facturas
-   add constraint fk_pago_fac_ref_factura foreign key (factura_id)
-      references factura (id)
+alter table FACTURA_DETALLE
+   add constraint FK_FAC_DET_REF_FACTURA foreign key (FACTURA_ID)
+      references FACTURA (ID)
       on delete restrict on update restrict;
 
-alter table pago_facturas
-   add constraint fk_pago_fac_ref_pago foreign key (pago_id)
-      references pago (id)
+alter table HISTORIA
+   add constraint FK_HISTORIA_RF_MEDICO foreign key (MEDICO_PERSONA_ID)
+      references PERSONA (ID)
       on delete restrict on update restrict;
 
-alter table pais
-   add constraint fk_pais_rf_continente foreign key (continente_id)
-      references continente (id)
+alter table HISTORIA
+   add constraint FK_HISTORIA_RF_PACIENTE foreign key (PACIENTE_PERSONA_ID)
+      references PERSONA (ID)
       on delete restrict on update restrict;
 
-alter table persona
-   add constraint fk_persona_ref_ciudad foreign key (lugar_nacimiento_ciudad_id)
-      references ciudad (id)
+alter table HISTORIA
+   add constraint FK_HISTORIA_REFERENCE_HISTORIA foreign key (HISTORIA_ESTADO_ID)
+      references HISTORIA_ESTADO (ID)
       on delete restrict on update restrict;
 
-alter table persona
-   add constraint fk_persona_ref_pais foreign key (nacionalidad_pais_id)
-      references pais (id)
+alter table HISTORIA_DIAGNOSTICOS
+   add constraint FK_HISTORIA_FK_HISTOR_DIAGNOST foreign key (DIAGNOSTICO_ID)
+      references DIAGNOSTICO_CIE10 (ID)
       on delete restrict on update restrict;
 
-alter table persona
-   add constraint fk_persona_ref_tipo_doc foreign key (tipo_documento_id)
-      references tipo_documento (id)
+alter table HISTORIA_DIAGNOSTICOS
+   add constraint FK_HIST_DX_REF_HISTORIA foreign key (HISTORIA_ID)
+      references HISTORIA (ID)
       on delete restrict on update restrict;
 
-alter table persona_emails
-   add constraint fk_persona_email_ref_persona foreign key (persona_id)
-      references persona (id)
+alter table HISTORIA_NOTAS
+   add constraint FK_HISNOTA_RF_HISTORIA foreign key (HISTORIA_ID)
+      references HISTORIA (ID)
       on delete restrict on update restrict;
 
-alter table persona_emails
-   add constraint fk_persona_email_ref_tipo_email foreign key (tipo_email_id)
-      references tipo_email (id)
+alter table HISTORIA_TRATAMIENTOS
+   add constraint FK_HISTRA_RF_HISTORIA foreign key (HISTORIA_ID)
+      references HISTORIA (ID)
       on delete restrict on update restrict;
 
-alter table persona_roles
-   add constraint fk_persona_roles_ref_persona foreign key (persona_id)
-      references persona (id)
+alter table HISTORIA_TRATAMIENTOS
+   add constraint FK_HISTRA_RF_PROCUPS foreign key (PROCEDIMIENTO_CUPS_ID)
+      references PROCEDIMIENTO_CUPS (ID)
       on delete restrict on update restrict;
 
-alter table persona_roles
-   add constraint fk_persona_roles_ref_tipo_per foreign key (rol_persona_id)
-      references rol_persona (id)
+alter table MEMBRESIA_SERVICIOS
+   add constraint FK_MEMB_REF_MEMB_SER foreign key (MEMBRESIA_ID)
+      references MEMBRESIA (ID)
       on delete restrict on update restrict;
 
-alter table persona_roles
-   add constraint fk_per_roles_ref_per_tel foreign key (persona_telefonos_id)
-      references persona_telefonos (id)
+alter table MEMBRESIA_SERVICIOS
+   add constraint FK_MEMB_REF_SERVICIO foreign key (SERVICIO_ID)
+      references SERVICIO (ID)
       on delete restrict on update restrict;
 
-alter table persona_telefonos
-   add constraint fk_persona_tels_ref_persona foreign key (persona_id)
-      references persona (id)
+alter table METODLOGIA_ENTRENAMIENTOS
+   add constraint FK_METENT_RF_ENTRENAMIENTO foreign key (ENTRENAMIENTO_ID)
+      references ENTRENAMIENTO (ID)
       on delete restrict on update restrict;
 
-alter table persona_telefonos
-   add constraint fk_persona_tels_ref_tipo_tel foreign key (tipo_telefono_id)
-      references tipo_telefono (id)
+alter table METODLOGIA_ENTRENAMIENTOS
+   add constraint FK_METENT_RF_METODOLOGIA foreign key (METODOLOGIA_ID)
+      references METODOLOGIA (ID)
       on delete restrict on update restrict;
 
-alter table persona_telefonos
-   add constraint fk_pertel_rf_pais foreign key (pais_id)
-      references pais (id)
+alter table MONEDA_PAISES
+   add constraint FK_PAIS_MON_REF_MONEDA foreign key (MONEDA_ID)
+      references MONEDA (ID)
       on delete restrict on update restrict;
 
-alter table procedimiento
-   add constraint fk_procedimiento_ref_proceso foreign key (proceso_id)
-      references proceso (id)
+alter table MONEDA_PAISES
+   add constraint FK_PAIS_MON_REF_PAIS foreign key (PAIS_ID)
+      references PAIS (ID)
       on delete restrict on update restrict;
 
-alter table procedimiento
-   add constraint fk_pro_pro_ref_servicio foreign key (servicio_id)
-      references servicio (id)
+alter table PAGO
+   add constraint FK_PAGO_REF_PAGO_EST foreign key (PAGO_ESTADO_ID)
+      references PAGO_ESTADO (ID)
       on delete restrict on update restrict;
 
-alter table producto
-   add constraint fk_prod_ser_ref_tipo_pro foreign key (tipo_producto_id)
-      references tipo_producto (id)
+alter table PAGO
+   add constraint FK_PAGO_REF_PUNTO_VEN foreign key (PUNTO_VENTA_ID)
+      references PUNTO_VENTA (ID)
       on delete restrict on update restrict;
 
-alter table producto
-   add constraint fk_pro_ser_ref_membresia foreign key (membresia_id)
-      references membresia (id)
+alter table PAGO_DETALLES
+   add constraint FK_PAGO_DET_REF_CUPON foreign key (CUPO_ID)
+      references CUPON (ID)
       on delete restrict on update restrict;
 
-alter table producto_costo
-   add constraint fk_prod_cos_ref_producto foreign key (producto_id)
-      references producto (id)
+alter table PAGO_DETALLES
+   add constraint FK_PAGO_DET_REF_MONEDA foreign key (MONEDA_ID)
+      references MONEDA (ID)
       on delete restrict on update restrict;
 
-alter table punto_venta
-   add constraint fk_punto_ve_ref_ciudad foreign key (ciudad_id)
-      references ciudad (id)
+alter table PAGO_DETALLES
+   add constraint FK_PAGO_DET_REF_PAGO foreign key (PAGO_ID)
+      references PAGO (ID)
       on delete restrict on update restrict;
 
-alter table punto_venta
-   add constraint fk_punto_ve_ref_tipo_pun_ven foreign key (tipo_punto_venta_id)
-      references tipo_punto_venta (id)
+alter table PAGO_DETALLES
+   add constraint FK_PAGO_DET_REF_TIPO_PAGO foreign key (TIPO_PAGO_ID)
+      references TIPO_PAGO (ID)
       on delete restrict on update restrict;
 
-alter table resolucion_sec
-   add constraint fk_resol_ref_resolucion foreign key (resolucion_id)
-      references resolucion (id)
+alter table PAGO_FACTURAS
+   add constraint FK_PAGO_FAC_REF_FACTURA foreign key (FACTURA_ID)
+      references FACTURA (ID)
       on delete restrict on update restrict;
 
-alter table servicio
-   add constraint fk_servicio_ref_tipo_servicio foreign key (tipo_servicio_id)
-      references tipo_servicio (id)
+alter table PAGO_FACTURAS
+   add constraint FK_PAGO_FAC_REF_PAGO foreign key (PAGO_ID)
+      references PAGO (ID)
+      on delete restrict on update restrict;
+
+alter table PAIS
+   add constraint FK_PAIS_RF_CONTINENTE foreign key (CONTINENTE_ID)
+      references CONTINENTE (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA
+   add constraint FK_PERSONA_REF_CIUDAD foreign key (LUGAR_NACIMIENTO_CIUDAD_ID)
+      references CIUDAD (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA
+   add constraint FK_PERSONA_REF_PAIS foreign key (NACIONALIDAD_PAIS_ID)
+      references PAIS (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA
+   add constraint FK_PERSONA_REF_TIPO_DOC foreign key (TIPO_DOCUMENTO_ID)
+      references TIPO_DOCUMENTO (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_EMAILS
+   add constraint FK_PERSONA_EMAIL_REF_PERSONA foreign key (PERSONA_ID)
+      references PERSONA (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_EMAILS
+   add constraint FK_PERSONA_EMAIL_REF_TIPO_EMAIL foreign key (TIPO_EMAIL_ID)
+      references TIPO_EMAIL (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_ROLES
+   add constraint FK_PERSONA_ROLES_REF_PERSONA foreign key (PERSONA_ID)
+      references PERSONA (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_ROLES
+   add constraint FK_PERSONA_ROLES_REF_TIPO_PER foreign key (ROL_PERSONA_ID)
+      references ROL_PERSONA (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_ROLES
+   add constraint FK_PER_ROLES_REF_PER_TEL foreign key (PERSONA_TELEFONOS_ID)
+      references PERSONA_TELEFONOS (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_TELEFONOS
+   add constraint FK_PERSONA_TELS_REF_PERSONA foreign key (PERSONA_ID)
+      references PERSONA (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_TELEFONOS
+   add constraint FK_PERSONA_TELS_REF_TIPO_TEL foreign key (TIPO_TELEFONO_ID)
+      references TIPO_TELEFONO (ID)
+      on delete restrict on update restrict;
+
+alter table PERSONA_TELEFONOS
+   add constraint FK_PERTEL_RF_PAIS foreign key (PAIS_ID)
+      references PAIS (ID)
+      on delete restrict on update restrict;
+
+alter table PROCEDIMIENTO
+   add constraint FK_PROCEDIMIENTO_REF_PROCESO foreign key (PROCESO_ID)
+      references PROCESO (ID)
+      on delete restrict on update restrict;
+
+alter table PROCEDIMIENTO
+   add constraint FK_PRO_PRO_REF_SERVICIO foreign key (SERVICIO_ID)
+      references SERVICIO (ID)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO
+   add constraint FK_PROD_SER_REF_TIPO_PRO foreign key (TIPO_PRODUCTO_ID)
+      references TIPO_PRODUCTO (ID)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO
+   add constraint FK_PRO_SER_REF_MEMBRESIA foreign key (MEMBRESIA_ID)
+      references MEMBRESIA (ID)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO_COSTO
+   add constraint FK_PROD_COS_REF_PRODUCTO foreign key (PRODUCTO_ID)
+      references PRODUCTO (ID)
+      on delete restrict on update restrict;
+
+alter table PUNTO_VENTA
+   add constraint FK_PUNTO_VE_REF_CIUDAD foreign key (CIUDAD_ID)
+      references CIUDAD (ID)
+      on delete restrict on update restrict;
+
+alter table PUNTO_VENTA
+   add constraint FK_PUNTO_VE_REF_TIPO_PUN_VEN foreign key (TIPO_PUNTO_VENTA_ID)
+      references TIPO_PUNTO_VENTA (ID)
+      on delete restrict on update restrict;
+
+alter table RESOLUCION_SEC
+   add constraint FK_RESOL_REF_RESOLUCION foreign key (RESOLUCION_ID)
+      references RESOLUCION (ID)
+      on delete restrict on update restrict;
+
+alter table SERVICIO
+   add constraint FK_SERVICIO_REF_TIPO_SERVICIO foreign key (TIPO_SERVICIO_ID)
+      references TIPO_SERVICIO (ID)
       on delete restrict on update restrict;
 
